@@ -1,0 +1,190 @@
+.search-location {
+  margin: 0 auto 50px;
+  width: 280px;
+
+  &__form {
+    background-color: #ffffff;
+    padding: 14px 24px;
+    position: relative;
+    align-items: center;
+    border-radius: 30px;
+    border: 1px solid #ffffff;
+    margin-bottom: 14px;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      background: url(img/icon-location.svg) no-repeat center;
+      opacity: 0.3;
+      background-size: contain;
+      width: 22px;
+      height: 22px;
+      position: absolute;
+    }
+
+    input {
+      border: none;
+      padding-left: 34px;
+      color: #000000;
+      font-size: 14px;
+      font-weight: 400;
+      width: 75%;
+      outline: none;
+      font-family: 'Lato';
+
+      &::placeholder {
+        color: #000000;
+        font-size: 14px;
+      }
+    }
+
+    &-btn {
+      fill: #000000;
+      position: absolute;
+      top: 50%;
+      right: 22px;
+      transform: translateY(-50%);
+      opacity: 0.471;
+      border: none;
+      width: 20px;
+      height: 20px;
+      outline: none;
+      border-radius: 50%;
+      cursor: pointer;
+      padding: 0;
+      transition: fill 200ms linear;
+    }
+
+    &-btn-focus {
+      fill: #ff6b08;
+    }
+  }
+
+  &__slider {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+
+    &-btnPrev,
+    &-btnNext {
+      opacity: 0.471;
+      width: 28px;
+      height: 28px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: opacity 200ms linear;
+      outline: none;
+      position: absolute;
+
+      &:hover,
+      &:hover svg {
+        opacity: 1;
+      }
+
+      & svg {
+        fill: #000000;
+        transition: opacity 200ms linear;
+        width: 80%;
+        height: 80%;
+      }
+    }
+
+    &-btnPrev {
+      left: 0;
+    }
+
+    &-btnNext {
+      right: 0;
+    }
+
+    &-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      width: 178px;
+      height: 27px;
+    }
+
+    &-list svg {
+      display: block;
+      height: 100%;
+      width: 12px;
+      fill: #ffffff;
+    }
+
+    &-list-item {
+      border-radius: 12px;
+      background-color: rgb(16, 33, 54);
+      opacity: 0.471;
+      padding: 5px 5px 5px 10px;
+      transition: opacity 200ms linear;
+      width: 86px;
+    }
+
+    &-list-item:hover,
+    &-list-item:focus {
+      opacity: 1;
+    }
+
+    &-list-content {
+      display: flex;
+      color: #ffffff;
+      font-size: 12px;
+      justify-content: space-around;
+    }
+
+    &-list-sity {
+      cursor: pointer;
+      font-family: 'Lato';
+      font-weight: 400;
+      font-size: 12px;
+    }
+
+    &-list-sity::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 1px;
+      background-color: #ffffff;
+      margin-bottom: 1px;
+    }
+
+    &-list-content-renove-city__button {
+      background-color: transparent;
+      background-image: url(img/icons/cross.svg);
+      background-repeat: no-repeat;
+      background-size: 10px;
+      background-position: center;
+      border: none;
+      cursor: pointer;
+      height: 16px;
+      width: 16px;
+      outline: none;
+      padding: 0;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .search-location {
+    width: 504px;
+
+    input {
+      font-size: 18px;
+      width: 85%;
+
+      &::placeholder {
+        font-size: 18px;
+      }
+    }
+
+    .search-location__slider-list {
+      width: 380px;
+      justify-content: space-evenly;
+    }
+  }
+}

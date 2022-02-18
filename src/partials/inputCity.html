@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Weather App</title>
+</head>
+
+<body>
+    <!-- сюда импортируем статическую разметку -->
+    <div class="background-wrapper">
+        <div class="container">
+            <!-- 1 -->
+            <section class="search-location">
+                <form class="search-location__form">
+                    <input type="text" name="query" placeholder="Enter the city" class="search-form" />
+                    <button type="button" class="search-location__form-btn js-search-location__form-btn">
+                        <svg viewBox="0 0 32 32">
+                            <path
+                                d="M32 12.408l-11.056-1.607-4.944-10.018-4.944 10.018-11.056 1.607 8 7.798-1.889 11.011 9.889-5.199 9.889 5.199-1.889-11.011 8-7.798zM16 23.547l-6.983 3.671 1.334-7.776-5.65-5.507 7.808-1.134 3.492-7.075 3.492 7.075 7.807 1.134-5.65 5.507 1.334 7.776-6.983-3.671z">
+                            </path>
+                        </svg>
+                    </button>
+                </form>
+                <div class="search-location__slider">
+                    <button class="search-location__slider-btnPrev">
+                        <svg aria-hidden="true" viewBox="0 -3 32 32">
+                            <path d="M20.914 9.914l-2.829-2.829-8.914 8.914 8.914 8.914 2.828-2.828-6.086-6.086z">
+                            </path>
+                        </svg>
+                    </button>
+                    <ul class="search-location__slider-list"></ul>
+                    <button class="search-location__slider-btnNext">
+                        <svg aria-hidden="true" viewBox="0 -3 32 32" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <path d="M11.086 22.086l2.829 2.829 8.914-8.914-8.914-8.914-2.828 2.828 6.086 6.086z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+            </section>
+
+     
+</body>
+
+</html>
