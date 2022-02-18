@@ -1,1 +1,0 @@
-{"version":3,"sources":["sass/_example.scss"],"names":[],"mappings":"AAAA,GACE,gBAAA,CACA","file":"src.cd2fe7ab.css","sourceRoot":"../src","sourcesContent":["h1 {\n  font-size: larger;\n  color: blue;\n}\n"]}
