@@ -1,0 +1,49 @@
+.quote-section {
+  width: 100%;
+  padding: 16px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  @media screen and (min-width: 1200px) {
+    width: 50%;
+  }
+}
+.quote {
+  display: flex;
+  flex-direction: column;
+  max-width: 280px;
+  margin-top: 21px;
+  margin-left: auto;
+  padding-top: 27px;
+  text-align: right;
+  color: #ffffff;
+  background-image: url('../images/quote_mobile.png');
+  background-position: right 0% top 0%;
+  background-repeat: no-repeat;
+  @media screen and (min-width: 768px) {
+    max-width: 380px;
+    margin-top: 60px;
+    background-image: url('../images/quote_tablet.png');
+  }
+}
+.quote__text {
+  font-size: 14px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.2;
+  margin-bottom: 8px;
+  @media screen and (min-width: 768px) {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+}
+.quote__author {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  @media screen and (min-width: 480px) {
+    margin-bottom: 40px;
+  }
+}
