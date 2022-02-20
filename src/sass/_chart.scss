@@ -1,6 +1,6 @@
-
 body {
     background-color: rgb(83, 77, 77);
+    
 }
 .container-chart{
     display: flex;
@@ -24,10 +24,11 @@ body {
     width: 10px;
     height: 10px;
     vertical-align:middle;
-  
 }
+
 .chart--btn__show{
     margin-bottom: 8px;
+    font-family:Lato;
     padding-right: 14px;
     font-size: 14px;
     line-height: 22px;
@@ -51,29 +52,43 @@ body {
         cursor: pointer;
     }
 }
-
-// .chart--view{
-//     background-color: rgba(16,33,54,.8);
-//     width: 280px;
-//     padding: 16px 26px;
-//     box-shadow: 0 8px 43px 0 rgb(16 33 54 / 59%);
-//     border-radius: 35px;
-
-// }
+.chart--view{
+    background-color: rgba(16,33,54,.8);
+    width: 280px;
+    padding: 16px 26px;
+    box-shadow: 0 8px 43px 0 rgb(16 33 54 / 59%);
+    border-radius: 35px;
+}
+.scroll_box{
+    width: 420px;
+    height: 466px;
+}
+.chart-wrapper{
+    overflow-x: scroll;
+  
+}
 .hidden{
     display: none;
 }
+// .myChart{
+//     width: 400px;
+//     height: 300px;
+//     margin: 0px;
+//     padding: 0px;
+// }
 @media screen and (min-width: 320px) {
     .chart{
         padding: 16px 26px;
         background-color: rgba(16,33,54,.8);
         border-radius: 34px;
-       
     }
-    .myChart{
-        margin: 0px;
-        padding: 0px;
-    }
+    // .myChart{
+    //     display: block;
+    //     width: 400px;
+    //     height: 300px;
+    //     margin: 0px;
+    //     padding: 0px;
+    // }
     .chart--list{
         display: flex;
         justify-content: center;
@@ -113,18 +128,38 @@ body {
             cursor: pointer;
         }
     }
-    
+    .scroll_box{
+        width: 370px;
+        height: 466px;        
+        
+    }
+   
     .chart--view{
         background-color: rgba(16,33,54,.8);
         width: 280px;
         padding: 16px 26px;
         box-shadow: 0 8px 43px 0 rgb(16 33 54 / 59%);
         border-radius: 35px;
-        overflow-x: scroll;
+       
     }
+   
     .chart-wrapper{
-        width: 400px;
+        overflow-x: scroll;
+        &::-webkit-scrollbar {
+            width: 24px; /* ширина для вертикального скролла */
+            height: 2px; /* высота для горизонтального скролла */
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 107, 9, 1);
+            border-radius: 1px;
+            
+        }
+        &::-webkit-scrollbar-thumb:hover {
+            background-color: #253861;
+        }
     }
+
     .hidden{
         display: none;
     }
@@ -132,10 +167,14 @@ body {
 @media screen and (min-width: 768px) {
     .chart--view{
         width: 620px;
-        
     }
     .chart-wrapper{
         width: 100%;
+        overflow-x: hidden;
+    }
+    .scroll_box{
+        width: 100%;
+        height: auto;
     }
 }
 @media screen and (min-width: 1280px) {
@@ -144,5 +183,9 @@ body {
     }
     .chart-wrapper{
         width: 100%;
+        overflow-x: hidden;
+    }
+    .scroll_box{
+        overflow:hidden;
     }
 }

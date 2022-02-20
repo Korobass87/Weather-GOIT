@@ -27,6 +27,7 @@ function onHideBox (e){
         units: "metric",
         lang: "ru",
         appid: "daa3c03c1253f276d26e4e127c34d058",
+        // cnt:5,
       });
       console.log(searchParams.toString())
     const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?${searchParams}`)
@@ -35,102 +36,160 @@ function onHideBox (e){
  }
 //Вызываем функцию запроса к api
  getWeatherApi('lipetsk').then((response)=>{
-    // помещаем массив данных на 5 дней 
-    const fiveDaysWeather = parseDatesFiveDays(response);
-    console.log(fiveDaysWeather)
-    chartRender(fiveDaysWeather, ctx)
+    //помещаем массив данных на 5 дней 
+    const finalDate = dataProcessingFiveDays(response).list
+    console.log(finalDate)
+    processedData(finalDate)
+    console.log(new Date(response.list[0].dt * 1000).getDate())
+    console.log(response.list[0].dt)
+    chartRender(processedData(finalDate), ctx)
    
  })
-
-//получаем массив дат  из прогноза на 5 дней
-const parseDatesFiveDays = response => {
-   const getDate = (data) => {return new Date(data.dt_txt).toDateString()}; // получаем дату для графика
-   const dates = response.list
-     .map(element => getDate(element))
-     //фильтром делаем поис уникальных дат
-     .filter((el, idx, arr) => arr.indexOf(el) === idx)
-     // отрезаем последний элемент массива для получения массива с 5-ю датами
-     const resDates = dates.splice(dates.length -1, 1)
-     // выплевываем массив дат с обрезанными названиями дней недель
-     return fersSpliceElem(dates)
+const processedData = (obj)=>{
+  const proData = {
+    data: obj.map(elem=>elem.date),
+    temp: obj.map(elem=>elem.temp),
+    humidity: obj.map(elem=>elem.humidity),
+    speed: obj.map(elem=>elem.speed),
+    pressure: obj.map(elem=>elem.pressure),
+  }
+  return proData
 }
 
 
-function chartRender(labels, link){
+// Обработка данных на 5 дней
+let fiveDayData = {};
+const getDate = data => new Date(data.dt * 1000).getDate(); // Находим число 
+//fiveData - возвращает массив с уникальными днями
+const fiveData = (response) =>{
+  const araryFiveday = response.list.map(elem => getDate(elem)) //выводит массив дней [20, 20, 20, 21, 21, 21, 21, 21, 21, 21, 21, 22, 22, 22, 22, 22, 22, 22, 22, 23, 23, 23, 23, 23, 23, 23, 23, 24, 24, 24, 24, 24, 24, 24, 24, 25, 25, 25, 25, 25]
+  const uniqueFiveDays = araryFiveday.filter((el, indx, arr)=> arr.indexOf(el) === indx) // возвращает копию массива с уникальными днями
+  return uniqueFiveDays 
+}
+const dataProcessingFiveDays = response => {
+  
+  const list = fiveData(response)
+    .map(el => response.list.filter(elem => getDate(elem) === el))
+    .map(element => ({
+      date: new Date(element[0].dt_txt).toDateString().slice(4,element[0].dt_txt.length), //юерем дату для графика и срезаем первые 4 сим
+      temp: element[0].main.temp,
+      humidity: element[0].main.humidity,
+      speed: element[0].wind.speed,
+      pressure: element[0].main.pressure,
+      
+    }));
+    console.log(list)
+  if (list[5]) {
+    list.shift();
+  }
+  const changedData = {
+    ...response,
+    list,
+  };
+  fiveDayData = changedData;
+  return fiveDayData;
+};
+
+
+function chartRender(labels, link,){
+console.log(labels.temp)
    const configCahrt = {
       type: 'line',
+    
       data: {
-          labels: labels,
+          labels: labels.data,
+          
           datasets: [{
-              label: '# of Votes',
-              data: [12, 19, 3, 5, 2, 3],
-              backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  'rgba(75, 192, 192, 0.2)',
-                  'rgba(153, 102, 255, 0.2)',
-                  'rgba(255, 159, 64, 0.2)'
-              ],
-              borderColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)'
-              ],
+              label: '— Temperature, C°'+"             ",
+              data: labels.temp,
+              tension: 0.2,
+              fill: false,
+              backgroundColor: 'rgba(255, 107, 9, 1)',
+              borderColor: 'rgba(255, 107, 9, 1)',
               borderWidth: 1
-          }]
+          },
+          {
+            label: '— Humidity, %                       ',
+            data: labels.humidity,
+            tension: 0.2,
+            fill: false,
+            backgroundColor: 
+                'rgba(9, 6, 235, 1)',
+            borderColor: 
+                'rgba(9, 6, 235, 1)',
+            borderWidth: 1
+        },
+        {
+          label: '— Wind Speed, m/s                   ',
+          data: labels.speed,
+          tension: 0.2,
+          fill: false,
+          backgroundColor: [
+              'rgba(234, 154, 5, 1)',
+          ],
+          borderColor: [
+              'rgba(234, 154, 5, 1)',
+          ],
+          borderWidth: 1
       },
-      options: {
-         title: {
-           display: true,
-           text: 'Value of indicators',
-           position: 'left',
-         },
-         legend: {
-           display: true,
-           align: 'start',
-   
-           labels: {
-             boxWidth: 13,
-             boxHeight: 12,
-             defaultFontColor: 'rgb(5, 120, 6)',
-             padding: 10,
-           },
-         },
-         scales: {
-           xAxes: [
-             {
-               gridLines: {
-                 color: 'rgba(255, 255, 255, 0.541)',
-               },
-               ticks: {
-                 padding: 20,
-               },
-             },
-           ],
-           yAxes: [
-             {
-               gridLines: {
-                 color: 'rgba(255, 255, 255, 0.541)',
-                 stepSize: 0.5,
-                 zeroLineColor: 'rgba(255, 255, 255, 0.541)',
-               },
-               ticks: {
-                 padding: 18,
-               },
-               y: { // defining min and max so hiding the dataset does not change scale range
-                  min: 0,
-                  max: 100
-                },
-             },
-           ],
-         },
-         responsive: true,
-         maintainAspectRatio: false,
-      }
+      {
+        label: '— Atmosphere Pressure, m/m',
+        data: labels.pressure,
+        tension: 0.2,
+        fill: false,
+        backgroundColor: 
+            'rgba(6, 120, 6, 1)',
+        borderColor:
+            'rgba(6, 120, 6, 1)',
+        borderWidth: 1
+      }],
+    },
+    options: {
+      layout: {
+        padding: {
+            left: 0
+        }
+    },
+      plugins: {
+        legend: {
+          display: true,
+          align: 'start',
+          // maxHeight: 1220,
+          // maxWidth: 1220,
+          labels: {
+            boxWidth: 15,
+            boxHeight: 12,
+            defaultFontColor: 'rgb(5, 120, 6)',
+            color: 'rgba(247, 242, 242, 1)',
+            padding:10,
+          
+          },
+        },
+        title: {
+          display: true,
+          text: 'Value of indicators',
+          position: 'left',
+          // padding: {
+          //   top: 5,
+          //   bottom: 5
+          // },
+          padding: 0,
+          fullSize: false,
+        },
+        
+      },
+      
+      scales: {
+    
+      },
+    responsive: true,
+    maintainAspectRatio: false,
+    devicePixelRatio: 2,
+    
+
+    // aspectRatio: 3,
+    }
+    
    }
    const myChart = new Chart(link, configCahrt);
 }
