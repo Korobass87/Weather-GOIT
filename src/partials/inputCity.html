@@ -1,8 +1,18 @@
 <div class="search-container">
 <form class="search-city">
-    <button type="button" class="search-city__form-btn js-search-city__form-btn"></button>
+    <button type="text" class="search-city__geo-btn">
+        <svg class="search-city__icon-fav" width="20", height="20">
+            <use href="./images/svg/symbol-defs.svg#icon-location"></use></svg>
+        </button>
     <input type="text" name="query" placeholder="Enter the city" class="search-form">
-    <button type="button" class="search-city__add-favorite"></button>
+    <button type="button" class="search-city__form-btn js-search-city__form-btn">
+        <svg class="search-city__icon-fav" width="20" height="20">
+            <use href="./images/svg/symbol-defs.svg#icon-star-1"></use>
+        </svg>
+    </button>
 </form>
 
+<div class="output"></div>
+
 </div>
+
