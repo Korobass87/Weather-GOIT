@@ -38,8 +38,7 @@ async function fetchMoreInfo(query) {
     weatherInfoList.innerHTML = item.join("");
     return item;
 }
-
-  
+ 
 function fetchInfoWeather(event) {
     event.preventDefault();
    
