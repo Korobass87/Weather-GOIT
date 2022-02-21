@@ -4,7 +4,11 @@ import axios from 'axios';
 const search = document.querySelector('form#search');
 const searchBox = document.querySelector('input#search-box');
 
-search.addEventListener('submit', onSearch);
+// закоментировал для работы блока 7
+
+//==
+
+// search.addEventListener('submit', onSearch);
 
 window.onload = function londonIsTheCapitalOfGreatBritain() {
   const query = 'London';
@@ -24,12 +28,15 @@ async function fetchWeather(query) {
     `http://api.openweathermap.org/data/2.5/forecast?q=${query}&units=metric&lang=en&appid=daa3c03c1253f276d26e4e127c34d058`,
   );
   const weather = await response.data;
-  output.innerHTML = `
-<span class="">Название города: ${weather.city.name}</span>
-<span class="">Восход: ${weather.city.sunrise}</span>
-<span class="">Закат: ${weather.city.sunset}</span>
-<span class="">Температура: ${Math.ceil(weather.list[0].main.temp)}</span>
-`;
+  // закоментировал для работы блока 7
+
+  //==
+  //   output.innerHTML = `
+  // <span class="">Название города: ${weather.city.name}</span>
+  // <span class="">Восход: ${weather.city.sunrise}</span>
+  // <span class="">Закат: ${weather.city.sunset}</span>
+  // <span class="">Температура: ${Math.ceil(weather.list[0].main.temp)}</span>
+  // `;
   fetchImages(weather);
   fetchRandomQuote();
 }
@@ -63,3 +70,84 @@ async function fetchRandomQuote() {
   `;
   return quote;
 }
+
+//block 7
+
+const dayNowRef = document.querySelector('.date__day');
+const monthNowRef = document.querySelector('.date__month');
+const timeNowRef = document.querySelector('.date__time');
+
+const moment = require('moment-timezone');
+
+const nth = function (d) {
+  if (d > 3 && d < 21) return 'th';
+  switch (d % 10) {
+    case 1:
+      return 'st';
+    case 2:
+      return 'nd';
+    case 3:
+      return 'rd';
+    default:
+      return 'th';
+  }
+};
+
+const intervalId = setInterval(() => {
+  const date = new Date();
+  const changeDate = oneDayData.timezone
+    ? moment(date).utcOffset(oneDayData.timezone / 60)
+    : moment(date);
+  const dayNow = date.getDate();
+
+  const weekDayNow = new Intl.DateTimeFormat('en', { weekday: 'short' }).format(date);
+
+  dayNowRef.innerHTML = `${dayNow}<sup class="date__day--nth">${nth(dayNow)}</sup> ${weekDayNow}`;
+
+  monthNowRef.textContent = new Intl.DateTimeFormat('en', { month: 'long' }).format(date);
+  timeNowRef.textContent =
+    pad(changeDate.hours()) + ':' + pad(changeDate.minutes()) + ':' + pad(changeDate.seconds());
+}, 1000);
+
+function pad(value) {
+  return String(value).padStart(2, '0');
+}
+
+const dateSunriseTime = document.querySelector('.date__sunrise--time');
+const dateSunsetTime = document.querySelector('.date__sunset--time');
+
+function addZero(i) {
+  if (i < 10) {
+    i = '0' + i;
+  }
+  return i;
+}
+const renderSunTime = (sunrise, sunset) => {
+  sunrise = oneDayData.timezone
+    ? moment(sunrise).utcOffset(oneDayData.timezone / 60)
+    : moment(sunrise);
+  sunset = oneDayData.timezone
+    ? moment(sunset).utcOffset(oneDayData.timezone / 60)
+    : moment(sunrise);
+  const sunriseHours = addZero(sunrise.hours());
+  const sunriseMinutes = addZero(sunrise.minutes());
+  const sunsetHours = addZero(sunset.hours());
+  const sunsetMinutes = addZero(sunset.minutes());
+  dateSunriseTime.textContent = sunriseHours + ':' + sunriseMinutes;
+  dateSunsetTime.textContent = sunsetHours + ':' + sunsetMinutes;
+};
+
+let oneDayData = {};
+
+const renderOneDayWeather = data => {
+  oneDayData = data;
+  if (!document.querySelector('.temperature-box')) {
+    renderSunTime(oneDayData.sunrise, oneDayData.sunset);
+  } else {
+    document.querySelector('.temperature-box').remove();
+    refs.contentBox.insertAdjacentHTML('afterbegin', oneDayTemp(oneDayData));
+    renderSunTime(oneDayData.sunrise, oneDayData.sunset);
+  }
+};
+
+renderOneDayWeather(oneDayData);
