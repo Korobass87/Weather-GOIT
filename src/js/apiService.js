@@ -3,35 +3,36 @@ import axios from "axios";
 const formRef = document.querySelector('.search-city');
 const inputRef = document.querySelector('.search-form');
 const output = document.querySelector('.output');
-const geoBtn = document.querySelector('.search-city__geo-btn');
+const geoBtn = document.querySelector('.geo-btn');
 
 formRef.addEventListener('submit', onSearch);
-navigator.geolocation.getCurrentPosition(success, londonIsTheCapitalOfGreatBritain);
+geoBtn.addEventListener('click', getLocationByIP);
+navigator.geolocation.getCurrentPosition(success, onError);
 
 function onSearch(event) {
-    event.preventDefault();
-    const query = inputRef.value;
-  console.log(query);
+event.preventDefault();
+const query = inputRef.value;
   fetchWeather(query);
 }
 
-
-const getGeoLocation = (e) => {
-    e.preventDefault();
-    navigator.geolocation.getCurrentPosition(success, londonIsTheCapitalOfGreatBritain);
-}
-geoBtn.addEventListener('click', getGeoLocation);
-
- function londonIsTheCapitalOfGreatBritain() {
-  const query = 'London';
-  fetchWeather(query);
-};
 
 function success(position) {
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
 
     fetchWeatherByCoords(lat,lon) 
+}
+
+ function onError() {
+  const query = 'Moscow';
+  fetchWeather(query);
+};
+
+async function getLocationByIP() {
+  const response = await axios.get(`https://ipapi.co/json/`);
+  const locationByIP = await response.data;
+  const query = locationByIP.city;
+  fetchWeather(query);
 }
 
 async function fetchWeatherByCoords(lat,lon) {
