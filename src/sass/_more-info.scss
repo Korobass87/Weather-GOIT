@@ -2,20 +2,25 @@ p,
 ul,
 li {
   margin: 0;
+  padding: 0;
 }
 
 .more-info {
   background: rgba(16, 33, 54, 0.8);
   font-family: Lato;
-
+  margin-left: auto;
+  margin-right: auto;
   @media screen and (min-width: 320px) {
-    padding: 0 10px 35px;
+    width: 280px;
+    padding: 0px 4px 20px 6px;
   }
   @media screen and (min-width: 768px) {
-    padding: 0 30px 25px;
+    padding: 0px 20px 32px 20px;
+    width: 704px;
   }
   @media screen and (min-width: 1280px) {
-    padding: 35px 0 35px;
+    width: 1256px;
+    padding: 0 20px 45px 20px;
   }
 
   &_scroll {
@@ -48,7 +53,7 @@ li {
     background-color: #ff6b08;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 768px) {
     justify-content: space-evenly;
   }
 }
@@ -83,8 +88,26 @@ li {
   &:last-child {
     margin-right: 0px;
   }
-  &__icon {
-    fill: currentColor;
+  &__icon-pressure {
+    width: 20px;
+    height: 20px;
+    background-image: url('../images/barometer.png');
+    margin-right: 10px;
+    background-repeat: no-repeat;
+  }
+  &__icon-humidity {
+    width: 20px;
+    height: 20px;
+    background-image: url('../images/humidity.png');
+    margin-right: 10px;
+    background-repeat: no-repeat;
+  }
+  &__icon-wind {
+    width: 20px;
+    height: 20px;
+    background-image: url('../images/wind.png');
+    margin-right: 10px;
+    background-repeat: no-repeat;
   }
   &__data {
     text-align: left;
@@ -108,14 +131,17 @@ li {
   }
 
   &__pressure {
+    display: flex;
     margin-bottom: 4px;
-    vertical-align: middle;
+    align-items: center;
   }
   &__humidity {
+    display: flex;
     margin-bottom: 4px;
-    vertical-align: middle;
+    align-items: center;
   }
   &__wind {
-    vertical-align: middle;
+    display: flex;
+    align-items: center;
   }
 }
