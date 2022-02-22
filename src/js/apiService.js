@@ -1,6 +1,7 @@
 import axios from "axios";
 import fetchImages from "./randomImg"
 import renderOneDayWeather from "./timenow"
+import fetchMoreInfo from './more-info.js';
 
 const formRef = document.querySelector('.search-city');
 const inputRef = document.querySelector('.search-form');
@@ -62,6 +63,7 @@ async function fetchWeather(query) {
   
   fetchImages(weather)
   renderOneDayWeather(weather)
+  fetchMoreInfo(weather)
   output.innerHTML = `
 <span class="">Название города: ${weather.city.name}</span>
 <span class="">Восход: ${weather.city.sunrise}</span>

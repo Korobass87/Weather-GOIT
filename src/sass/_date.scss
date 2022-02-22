@@ -7,6 +7,7 @@
   height: 184px;
   border-radius: 34px;
   background: rgba(16, 33, 54, 0.8);
+
   margin: 0 auto;
   color: #fff;
   font-weight: 400;
@@ -112,6 +113,7 @@
     height: 264px;
 
     margin: 0px;
+    margin-top: 40px;
 
     display: flex;
 
@@ -123,6 +125,9 @@
     padding-left: 16px;
 
     border-radius: 0px 34px 0px 0px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
   }
   .date__day {
     text-align: left;

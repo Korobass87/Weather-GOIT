@@ -11,10 +11,14 @@ const weatherInfoList = document.querySelector('.more-info__list');
 
 moreButton.addEventListener("click", fetchInfoWeather);
 
-async function fetchMoreInfo(query) {
-    const response = await axios.get(`${BASE_URL}/forecast?q=${query}&units=metric&cnt=7&lang=ru&appid=${API_KEY}`)
-        const data = response.data;
-    const item = response.data.list.map(elem =>  
+let dateForMore = 26
+
+export default async function fetchMoreInfo(data) {
+    
+    
+    const arrForRender = data.list.filter(item => (new Date(item.dt * 1000)).getDate() === dateForMore);
+    console.log(arrForRender);
+    const item = arrForRender.map(elem =>  
        ` <li class="time-weather">
         <p class="time-weather__time">${getCurrentTime(elem.dt)}</p>
         <p class="time-weather__temp">
@@ -41,9 +45,9 @@ async function fetchMoreInfo(query) {
  
 function fetchInfoWeather(event) {
     event.preventDefault();
-   
-     weatherInfo.classList.remove('is-hidden');
-     fetchMoreInfo(query);
+    if (weatherInfo.classList.contains('is-hidden')) {
+        weatherInfo.classList.remove('is-hidden');
+    } else {weatherInfo.classList.add('is-hidden')}
     
 }
 

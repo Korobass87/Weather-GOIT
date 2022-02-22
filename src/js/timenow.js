@@ -21,9 +21,7 @@ const nth = function (d) {
 const intervalId = setInterval(() => {
   const date = new Date();
   const changeDate=moment(date).utcOffset(oneDayData.timezone / 60)
-  // const changeDate = oneDayData.timezone
-  //   ? moment(date).utcOffset(oneDayData.timezone / 60)
-  //   : moment(date);
+ 
   const dayNow = date.getDate();
 
   const weekDayNow = new Intl.DateTimeFormat('en', { weekday: 'short' }).format(date);
@@ -51,14 +49,10 @@ function addZero(i) {
 const renderSunTime = (sunrise, sunset) => {
   const daterise = new Date(sunrise * 1000)
   const sunrisechange = moment(daterise).utcOffset(oneDayData.timezone / 60)
-    // const sunrisechange = oneDayData.timezone
-    // ? moment(daterise).utcOffset(oneDayData.timezone / 60)
-    // : moment(daterise);
+    
   const dateset = new Date(sunset * 1000)
   const sunsetchange = moment(dateset).utcOffset(oneDayData.timezone / 60)
-  // const sunsetchange = oneDayData.timezone
-  //   ? moment(dateset).utcOffset(oneDayData.timezone / 60)
-  //   : moment(dateset);
+  
   const sunriseHours = addZero(sunrisechange.hours());
   const sunriseMinutes = addZero(sunrisechange.minutes());
   const sunsetHours = addZero(sunsetchange.hours());
@@ -71,14 +65,14 @@ let oneDayData = {};
 
 export default function renderOneDayWeather(data) {
    oneDayData = data.city;
-  if (!document.querySelector('.temperature-box')) {
+  // if (!document.querySelector('.temperature-box')) {
    
+  //   renderSunTime(oneDayData.sunrise, oneDayData.sunset);
+  // } else {
+  //   document.querySelector('.temperature-box').remove();
+  //   refs.contentBox.insertAdjacentHTML('afterbegin', oneDayTemp(oneDayData));
+    // 
     renderSunTime(oneDayData.sunrise, oneDayData.sunset);
-  } else {
-    document.querySelector('.temperature-box').remove();
-    refs.contentBox.insertAdjacentHTML('afterbegin', oneDayTemp(oneDayData));
-    
-    renderSunTime(oneDayData.sunrise, oneDayData.sunset);
-  }
+  // }
 };
 
