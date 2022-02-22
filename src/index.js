@@ -1,5 +1,8 @@
 import './sass/main.scss';
 
+import './js/apiService';
+
+
 import axios from 'axios';
 const search = document.querySelector('form#search');
 const searchBox = document.querySelector('input#search-box');
@@ -151,3 +154,4 @@ const renderOneDayWeather = data => {
 };
 
 renderOneDayWeather(oneDayData);
+
