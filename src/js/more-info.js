@@ -22,7 +22,7 @@ export default async function fetchMoreInfo(data) {
        ` <li class="time-weather">
         <p class="time-weather__time">${getCurrentTime(elem.dt)}</p>
         <p class="time-weather__temp">
-            <img src="${'http://openweathermap.org/img/wn/' + elem.weather[0].icon + '.png'}" alt="${elem.weather[0].description}" class="time-weather__temp-icon">
+            <img src="${'https://openweathermap.org/img/wn/' + elem.weather[0].icon + '.png'}" alt="${elem.weather[0].description}" class="time-weather__temp-icon">
             <span class="time-weather__span">${Math.round(elem.main.temp)} °</span>
         </p>    
     <ul class="time-weather__data">
