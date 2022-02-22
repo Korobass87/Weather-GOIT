@@ -7,7 +7,6 @@ const showChart = document.querySelector('.chart--btn'); //ссылка на к�
 const hidenBtn = document.querySelector('.hidden_btn'); //ссылка на кнопку скрыть график
 const chartView = document.querySelector('.chart--view'); //ссылка на блок с самим графиком
 const ctx = document.querySelector('.myChart').getContext('2d'); //ссылка на canvas
-console.log(ctx)
 chartBtnHide.addEventListener('click', onShowBox)
 showChart.addEventListener('click', onShowBox)
 hideChart.addEventListener('click', onHideBox)
@@ -22,18 +21,20 @@ function onHideBox (e){
     chartView.classList.add('hidden') &
     jsHiden.classList.remove('hidden') 
  }
+//Фетч Ольги
+// async function fetchWeather() {
+//   try {
+//       const APIKey = 'daa3c03c1253f276d26e4e127c34d058';
+//       const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=30.489772&lon=-99.771335&exclude=hourly,minutely&units=metric&appid=${APIKey}`)
+//       const weatherList = await response.json()
+//       return weatherList.daily
+//   }
+//   catch (error) {
+//     console.log(error)
+//       }
+// }
 
-async function fetchWeather() {
-  try {
-      const APIKey = 'daa3c03c1253f276d26e4e127c34d058';
-      const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=30.489772&lon=-99.771335&exclude=hourly,minutely&units=metric&appid=${APIKey}`)
-      const weatherList = await response.json()
-      return weatherList.daily
-  }
-  catch (error) {
-    console.log(error)
-      }
-}
+
 //вызываю функцию запроса
 fetchWeather().then((response)=>{
  const sliceDaily = response.slice(0,5)
@@ -41,6 +42,8 @@ fetchWeather().then((response)=>{
  chartRender(dataToChart, ctx)
  
 })
+
+
 //обработчик данных для графика
 const processedData = (obj)=>{
   const getDateTxt = data => new Date(data.dt * 1000).toDateString()
@@ -184,7 +187,21 @@ function resize(){
  }
 }
 
+export {
+  jsHiden, 
+  chartBtnHide,
+  hideChart, 
+  showChart, 
+  hidenBtn,
+  chartView, 
+  ctx, 
+  onShowBox, 
+  onHideBox,
+  processedData,
+  chartRender,
+  resize,
 
+} 
 
 
      
