@@ -1,7 +1,4 @@
-body {
-    background-color: rgb(83, 77, 77);
-    
-}
+
 .container-chart{
     display: flex;
     justify-content: center;
@@ -60,7 +57,7 @@ body {
     border-radius: 35px;
 }
 .scroll_box{
-    width: 420px;
+    width: 373px;
     height: 466px;
 }
 .chart-wrapper{
@@ -76,6 +73,19 @@ body {
 //     margin: 0px;
 //     padding: 0px;
 // }
+.indicators{
+    display: none;
+}
+
+.chart--average__title{
+    margin-top: 10px;
+    margin-left: 8px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: Lato;
+    color: rgba(255, 255, 255, 0.3);
+}
 @media screen and (min-width: 320px) {
     .chart{
         padding: 16px 26px;
@@ -129,7 +139,7 @@ body {
         }
     }
     .scroll_box{
-        width: 370px;
+        width: 450px;
         height: 466px;        
         
     }
@@ -163,10 +173,27 @@ body {
     .hidden{
         display: none;
     }
+    .indicators{
+        display: none;
+    }
 }
 @media screen and (min-width: 768px) {
+
     .chart--view{
+        position: relative;
         width: 620px;
+    }
+    .indicators{
+        display: block;
+        font-family: Lato;
+        color: rgba(255, 255, 255, 0.3);
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        position: absolute;
+        transform: rotate(-90deg);
+        top: 50%;
+        left: -70px;
     }
     .chart-wrapper{
         width: 100%;
@@ -178,6 +205,10 @@ body {
     }
 }
 @media screen and (min-width: 1280px) {
+    .indicators{
+        left: -40px;
+        font-weight: 400;
+    }
     .chart--view{
         width: 1060px;
     }

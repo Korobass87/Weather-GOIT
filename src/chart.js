@@ -1,5 +1,5 @@
-console.log(window)
-import Chart from 'chart.js/auto';
+import Chart from 'chart.js/auto'; //ссылка на chart.js
+
 const jsHiden = document.querySelector('.js-hiden');
 const chartBtnHide = document.querySelector('.chart--btn__show'); //лишка с текстом show Chart
 const hideChart = document.querySelector('.hidden_title'); //лишка с текстом hide Chart
@@ -7,100 +7,63 @@ const showChart = document.querySelector('.chart--btn'); //ссылка на к�
 const hidenBtn = document.querySelector('.hidden_btn'); //ссылка на кнопку скрыть график
 const chartView = document.querySelector('.chart--view'); //ссылка на блок с самим графиком
 const ctx = document.querySelector('.myChart').getContext('2d'); //ссылка на canvas
+console.log(ctx)
 chartBtnHide.addEventListener('click', onShowBox)
 showChart.addEventListener('click', onShowBox)
 hideChart.addEventListener('click', onHideBox)
 hidenBtn.addEventListener('click', onHideBox)
+//Функция показывает блок графика
 function onShowBox (e){
    jsHiden.classList.add('hidden') &
    chartView.classList.remove('hidden')
 }
+//Функция убирает блок графика
 function onHideBox (e){
     chartView.classList.add('hidden') &
     jsHiden.classList.remove('hidden') 
  }
 
-//Запрос к api на 5 дней
- async function getWeatherApi (sity){
-    const searchParams = new URLSearchParams({
-        q: sity,
-        units: "metric",
-        lang: "ru",
-        appid: "daa3c03c1253f276d26e4e127c34d058",
-        // cnt:5,
-      });
-      console.log(searchParams.toString())
-    const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?${searchParams}`)
-    const parseRes = await response.json();
-    return parseRes
- }
-//Вызываем функцию запроса к api
- getWeatherApi('lipetsk').then((response)=>{
-    //помещаем массив данных на 5 дней 
-    const finalDate = dataProcessingFiveDays(response).list
-    console.log(finalDate)
-    processedData(finalDate)
-    console.log(new Date(response.list[0].dt * 1000).getDate())
-    console.log(response.list[0].dt)
-    chartRender(processedData(finalDate), ctx)
-   
- })
+async function fetchWeather() {
+  try {
+      const APIKey = 'daa3c03c1253f276d26e4e127c34d058';
+      const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=30.489772&lon=-99.771335&exclude=hourly,minutely&units=metric&appid=${APIKey}`)
+      const weatherList = await response.json()
+      return weatherList.daily
+  }
+  catch (error) {
+    console.log(error)
+      }
+}
+//вызываю функцию запроса
+fetchWeather().then((response)=>{
+ const sliceDaily = response.slice(0,5)
+ const dataToChart = processedData(sliceDaily)
+ chartRender(dataToChart, ctx)
+ 
+})
+//обработчик данных для графика
 const processedData = (obj)=>{
-  const proData = {
-    data: obj.map(elem=>elem.date),
-    temp: obj.map(elem=>elem.temp),
-    humidity: obj.map(elem=>elem.humidity),
-    speed: obj.map(elem=>elem.speed),
-    pressure: obj.map(elem=>elem.pressure),
+  const getDateTxt = data => new Date(data.dt * 1000).toDateString()
+    const proData = {
+      data: obj.map(elem=>getDateTxt(elem).slice(4,getDateTxt(elem).length)),
+      temp: obj.map(elem=>elem.temp.day),
+      humidity: obj.map(elem=>elem.humidity),
+      speed: obj.map(elem=>elem.wind_speed),
+      pressure: obj.map(elem=>elem.pressure),
+    }
+    return proData
   }
-  return proData
-}
 
 
-// Обработка данных на 5 дней
-let fiveDayData = {};
-const getDate = data => new Date(data.dt * 1000).getDate(); // Находим число 
-//fiveData - возвращает массив с уникальными днями
-const fiveData = (response) =>{
-  const araryFiveday = response.list.map(elem => getDate(elem)) //выводит массив дней [20, 20, 20, 21, 21, 21, 21, 21, 21, 21, 21, 22, 22, 22, 22, 22, 22, 22, 22, 23, 23, 23, 23, 23, 23, 23, 23, 24, 24, 24, 24, 24, 24, 24, 24, 25, 25, 25, 25, 25]
-  const uniqueFiveDays = araryFiveday.filter((el, indx, arr)=> arr.indexOf(el) === indx) // возвращает копию массива с уникальными днями
-  return uniqueFiveDays 
-}
-const dataProcessingFiveDays = response => {
-  
-  const list = fiveData(response)
-    .map(el => response.list.filter(elem => getDate(elem) === el))
-    .map(element => ({
-      date: new Date(element[0].dt_txt).toDateString().slice(4,element[0].dt_txt.length), //юерем дату для графика и срезаем первые 4 сим
-      temp: element[0].main.temp,
-      humidity: element[0].main.humidity,
-      speed: element[0].wind.speed,
-      pressure: element[0].main.pressure,
-      
-    }));
-    console.log(list)
-  if (list[5]) {
-    list.shift();
-  }
-  const changedData = {
-    ...response,
-    list,
-  };
-  fiveDayData = changedData;
-  return fiveDayData;
-};
-
-
+//Функция принимает массив объектов(уже готовых данных) и ссылку на график 
 function chartRender(labels, link,){
-console.log(labels.temp)
+  console.log(labels)
    const configCahrt = {
       type: 'line',
-    
       data: {
           labels: labels.data,
-          
           datasets: [{
-              label: '— Temperature, C°'+"             ",
+              label: '— Temperature, C°'+resize(),
               data: labels.temp,
               tension: 0.2,
               fill: false,
@@ -109,7 +72,7 @@ console.log(labels.temp)
               borderWidth: 1
           },
           {
-            label: '— Humidity, %                       ',
+            label: '— Humidity, %'+resize(),
             data: labels.humidity,
             tension: 0.2,
             fill: false,
@@ -120,7 +83,7 @@ console.log(labels.temp)
             borderWidth: 1
         },
         {
-          label: '— Wind Speed, m/s                   ',
+          label: '— Wind Speed, m/s'+resize(),
           data: labels.speed,
           tension: 0.2,
           fill: false,
@@ -147,26 +110,28 @@ console.log(labels.temp)
     options: {
       layout: {
         padding: {
-            left: 0
+            left: 0,
+            bottom: 20,
         }
     },
       plugins: {
         legend: {
           display: true,
           align: 'start',
-          // maxHeight: 1220,
-          // maxWidth: 1220,
+          // fullSize: false,
+          // maxWidth: 20,
+          // maxHeight: 210,
           labels: {
             boxWidth: 15,
             boxHeight: 12,
             defaultFontColor: 'rgb(5, 120, 6)',
             color: 'rgba(247, 242, 242, 1)',
             padding:10,
-          
           },
+        
         },
         title: {
-          display: true,
+          display: false,
           text: 'Value of indicators',
           position: 'left',
           // padding: {
@@ -180,27 +145,44 @@ console.log(labels.temp)
       },
       
       scales: {
-    
+        x: {
+          grid: {
+            color: 'rgba(255, 255, 255, 0.4)',
+            borderColor: 'rgba(255, 255, 255, 1)'
+          },
+          ticks: {
+            padding: 18,
+            color: 'rgba(255, 255, 255, 0.7)',
+          },
+        },
+        y: {
+          grid: {
+            color: 'rgba(255, 255, 255, 0.4)',
+            borderColor: 'rgba(255, 255, 255, 1)',
+           
+          },
+          ticks: {
+            padding: 18,
+            color: 'rgba(255, 255, 255, 0.7)',
+          },
+        },
       },
     responsive: true,
     maintainAspectRatio: false,
     devicePixelRatio: 2,
-    
-
-    // aspectRatio: 3,
     }
-    
    }
    const myChart = new Chart(link, configCahrt);
 }
-function fersSpliceElem(array){
-   let newArray = []
-   for(let i of array){
-      newArray.push(i.slice(4, i.length))
-   }
-   return newArray
-}
 
+//это супер костыль (не трогать)
+function resize(){
+  if(window.outerWidth <= 767) {
+    return "                                       "
+ }else{
+   return ''
+ }
+}
 
 
 
