@@ -1,4 +1,6 @@
 import axios from "axios";
+import fetchImages from "./randomImg"
+import renderOneDayWeather from "./timenow"
 
 const formRef = document.querySelector('.search-city');
 const inputRef = document.querySelector('.search-form');
@@ -33,6 +35,7 @@ async function getLocationByIP() {
   const locationByIP = await response.data;
   const query = locationByIP.city;
   fetchWeather(query);
+  
 }
 
 async function fetchWeatherByCoords(lat,lon) {
@@ -56,6 +59,9 @@ async function fetchWeather(query) {
     `http://api.openweathermap.org/data/2.5/forecast?q=${query}&units=metric&lang=en&appid=daa3c03c1253f276d26e4e127c34d058`,
   );
   const weather = await response.data;
+  
+  fetchImages(weather)
+  renderOneDayWeather(weather)
   output.innerHTML = `
 <span class="">Название города: ${weather.city.name}</span>
 <span class="">Восход: ${weather.city.sunrise}</span>
@@ -64,3 +70,5 @@ async function fetchWeather(query) {
 `;
 }
 
+// fetchImages(weather);
+// fetchRandomQuote();
