@@ -63,3 +63,6 @@ async function fetchRandomQuote() {
   `;
   return quote;
 }
+
+
+
