@@ -1,0 +1,158 @@
+.date-cotainer-list {
+  padding: 0;
+}
+
+.date-container {
+  width: 276px;
+  height: 184px;
+  border-radius: 34px;
+  background: rgba(16, 33, 54, 0.8);
+
+  margin: 0 auto;
+  color: #fff;
+  font-weight: 400;
+
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+}
+.date-cotainer-list {
+  list-style: none;
+}
+
+.date-container:hover {
+  transition: 200ms linear;
+  background-color: #102136;
+}
+
+.date__day {
+  text-align: center;
+  font-size: 45px;
+  letter-spacing: 1px;
+
+  color: #f7f7f7;
+  font-weight: 300;
+  margin-bottom: 5px;
+}
+
+.date__day--nth {
+  font-size: 14px;
+  vertical-align: super;
+}
+
+.date__month-time {
+  font-size: 14px;
+  display: flex;
+  height: 24px;
+  margin: 0 auto;
+  justify-content: center;
+}
+.date__month,
+.date__time {
+  width: 130px;
+}
+.date__month {
+  text-align: right;
+}
+.date__month::after,
+.date__sunrise--time::after {
+  content: '';
+  position: absolute;
+  width: 1px;
+  height: 20px;
+  background-color: #e7e8eb;
+  margin-left: 10px;
+}
+
+.date__sun {
+  font-size: 14px;
+  display: flex;
+  width: 170px;
+  height: 40px;
+  margin: 5px auto 0px;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 0;
+}
+
+.date__sunrise,
+.date__sunset {
+  display: flex;
+  width: 75px;
+
+  justify-content: space-between;
+  align-items: center;
+}
+.date__month,
+.date__sunrise {
+  margin-right: 10px;
+}
+.date__time,
+.date__sunset {
+  margin-left: 10px;
+}
+.date__sunrise--icon,
+.date__sunset--icon {
+  width: 20px;
+  height: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .date-container {
+    width: 704px;
+    height: 250px;
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .date-container {
+    width: 624px;
+    height: 264px;
+
+    margin: 0px;
+    margin-top: 40px;
+
+    display: flex;
+
+    align-content: center;
+    flex-direction: row;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding-left: 16px;
+
+    border-radius: 0px 34px 0px 0px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+  }
+  .date__day {
+    text-align: left;
+    margin: 0px;
+    font-size: 90;
+  }
+  .date__month-time {
+    display: flex;
+    height: 22px;
+    width: auto;
+    margin: 0;
+    justify-content: left;
+  }
+  .date__month {
+    width: auto;
+  }
+  .date__time {
+    width: 85px;
+  }
+  .date__month {
+    text-align: left;
+  }
+  .date__sun {
+    height: 22px;
+    margin: 0px;
+    padding-left: 20px;
+  }
+}
