@@ -66,7 +66,7 @@
   }
 }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) and (max-width: 1199px) {
   .search-container {
     width: 704px;
 
@@ -89,6 +89,7 @@
     width: 822px;
   }
   .geo-btn {
+    top: 18%;
     left: 3%;
   }
 }
