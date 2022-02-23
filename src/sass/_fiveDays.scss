@@ -1,0 +1,206 @@
+////это просто темная подложка//////
+body {
+  background-color: black;
+}
+/////////
+
+.fiveDays--container {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  min-width: 280px;
+  min-height: 252px;
+  background-color: rgba(16, 33, 54, 0.8);
+  border-radius: 34px;
+  box-shadow: 0px 5px 33px rgba(16, 33, 54, 0.6);
+  margin-bottom: 26px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 32px 30px 32px 30px;
+
+  @media screen and (min-width: 767px) {
+    padding: 40px 53px 40px 53px;
+    margin-bottom: 26px;
+    margin-left: 32px;
+    margin-right: 32px;
+    margin-top: 100px;
+    box-shadow: 0px 8px 43px rgba(16, 33, 54, 0.6);
+    position: relative;
+    overflow: visible;
+  }
+}
+.is-hidden {
+  display: none;
+}
+.fiveDays__list::-webkit-scrollbar {
+  display: none;
+}
+.fiveDays__citiesName {
+  font-size: 18px;
+  letter-spacing: 0.03em;
+  height: 26px;
+
+  text-align: center;
+  color: #ffffff;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  margin-bottom: 20px;
+  @media screen and (min-width: 767px) {
+    font-size: 28px;
+    letter-spacing: 0.04em;
+    line-height: 34px;
+    height: 40px;
+    position: absolute;
+    top: -56px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 0px;
+  }
+}
+
+.fiveDays__list {
+  display: flex;
+  flex-wrap: nowrap;
+
+  padding: 0;
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  margin: 0;
+  overflow: auto;
+  @media screen and (min-width: 520px) and (max-width: 767px) {
+    justify-content: center;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    font-size: 14px;
+    justify-content: center;
+  }
+  @media screen and (min-width: 1280px) {
+    font-size: 18px;
+    justify-content: center;
+  }
+}
+.fiveDays__item {
+  display: flex;
+  flex-direction: column;
+  margin-right: 17px;
+
+  align-items: center;
+  min-width: 62px;
+
+  @media screen and (min-width: 767px) and (max-width: 1279px) {
+    margin-right: 24px;
+  }
+  @media screen and (min-width: 1280px) {
+    margin-right: 32px;
+  }
+}
+
+.fiveDays__item:last-child {
+  margin-right: 0px;
+}
+
+.fiveDays__weekDay {
+  opacity: 0.55;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+.fiveDays--selected {
+  color: rgba(255, 107, 9, 1);
+}
+.fiveDays__date {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1.2;
+  color: #ffffff;
+  margin-bottom: 4px;
+  @media screen and (min-width: 767px) and (max-width: 1279px) {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  @media screen and (min-width: 1280px) {
+    font-size: 25px;
+    margin-bottom: 20px;
+  }
+}
+.fiveDays__img {
+  display: block;
+}
+.fiveDays__div {
+  width: 35px;
+  height: 35px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 4px;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 8px;
+  }
+  @media screen and (min-width: 1280px) {
+    margin-bottom: 20px;
+  }
+}
+.fiveDays__range {
+  display: flex;
+  flex-direction: column;
+  padding-left: 5px;
+  padding-right: 5px;
+  align-items: center;
+
+  &--border {
+    border-right: 1px solid #27384a;
+  }
+  @media screen and (min-width: 1280px) {
+    padding-left: 19px;
+    padding-right: 19px;
+  }
+}
+.fiveDays__range--limit {
+  color: #767d85;
+}
+.fiveDays__range--limitNumber {
+  color: #ff6b09;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1.2;
+  @media screen and (min-width: 767px) and (max-width: 1279px) {
+    font-size: 18px;
+  }
+  @media screen and (min-width: 1280px) {
+    font-size: 25px;
+  }
+}
+
+.fiveDays__range--common {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 4px;
+  @media screen and (min-width: 767px) {
+    margin-bottom: 16px;
+  }
+}
+.fiveDays__btn {
+  font-size: 11px;
+  font-weight: bold;
+  font-style: normal;
+  line-height: 1.2;
+
+  min-height: 20px;
+  min-width: 57px;
+  padding: 0px;
+  align-items: center;
+  color: #ffffff;
+  opacity: 0.3;
+  background: none;
+  text-decoration-line: underline;
+  border: none;
+  @media screen and (min-width: 767px) {
+    font-size: 14px;
+  }
+}
