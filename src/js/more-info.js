@@ -43,7 +43,7 @@ export default async function fetchMoreInfo(data) {
     return item;
 }
  
-function fetchInfoWeather(event) {
+function fetchInfoWeather (event) {
     event.preventDefault();
     if (weatherInfo.classList.contains('is-hidden')) {
         weatherInfo.classList.remove('is-hidden');
