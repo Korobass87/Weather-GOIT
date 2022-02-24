@@ -1,18 +1,21 @@
 
 // для теста
-import axios from 'axios';
-const query = 'Moscow';
+// import axios from 'axios';
+// const query = 'Moscow';
 
-async function fetchWeatherToday(query) {
-  const response = await axios.get(
-    `https://api.openweathermap.org/data/2.5/forecast?q=${query}&units=metric&lang=en&appid=daa3c03c1253f276d26e4e127c34d058`,
-  );
-  const weather = await response.data;
-  renderCurrentWeather(weather);
-}
+// async function fetchWeatherToday(query) {
+//   const response = await axios.get(
+//     `https://api.openweathermap.org/data/2.5/forecast?q=${query}&units=metric&lang=en&appid=daa3c03c1253f276d26e4e127c34d058`,
+//   );
+//   const weather = await response.data;
+//   renderCurrentWeather(weather);
+// }
 
-//функция рендера текущей погоды
-function renderCurrentWeather(weather) {
+// функция рендера текущей погоды
+
+
+export default function renderCurrentWeather(weather) {
+  console.log("рендер погоды сейчас");
   const todayWrapper = document.querySelector('.today__wrapper');
   let aboveZero = '';
   if (
@@ -48,7 +51,7 @@ function renderCurrentWeather(weather) {
     </div>
     `;
 }
-fetchWeatherToday(query);
+// fetchWeatherToday(query);
 
 // добавление класса на неактивную кнопку
 

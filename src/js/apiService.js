@@ -3,6 +3,9 @@ import fetchImages from './randomImg';
 import fetchRandomQuote from './randomQuote';
 import renderOneDayWeather from './timenow';
 import fetchMoreInfo from './more-info.js';
+import renderCurrentWeather from "./today"
+  
+
 
 const formRef = document.querySelector('.search-city');
 const inputRef = document.querySelector('.search-form');
@@ -43,11 +46,13 @@ async function fetchWeatherByCoords(lat, lon) {
     `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&lang=en&appid=daa3c03c1253f276d26e4e127c34d058`,
   );
   const weather = await response.data;
+  renderCurrentWeather(weather)
   fetchImages(weather);
   renderOneDayWeather(weather);
   fetchMoreInfo(weather);
   fetchImages(weather);
-  fetchRandomQuote();
+  fetchRandomQuote()
+  
 }
 
 async function fetchWeather(query) {
@@ -56,9 +61,12 @@ async function fetchWeather(query) {
     `https://api.openweathermap.org/data/2.5/forecast?q=${query}&units=metric&lang=en&appid=daa3c03c1253f276d26e4e127c34d058`,
   );
   const weather = await response.data;
+  renderCurrentWeather(weather)
   fetchImages(weather);
   renderOneDayWeather(weather);
   fetchMoreInfo(weather);
   fetchImages(weather);
-  fetchRandomQuote();
+  fetchRandomQuote()
+  
+  
 }
