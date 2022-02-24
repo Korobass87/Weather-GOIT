@@ -37,7 +37,7 @@ function onClickAddFavor(e) {
   }
 
   onCityLocalFetch(CURRENT_CITY_NAME);
-  // console.log(localStorage.getItem(JSON.parse(CURRENT_CITY_NAME)));
+
   return form.reset();
 }
 
@@ -58,7 +58,7 @@ function onCityLocalFetch(name) {
           throw new Error(response.status);
         }
 
-        console.log('GET CITY NAME FROM LOCAL STORAGE:', city);
+        console.log('GET API FROM LOCAL STORAGE:', city);
         console.log(response);
 
         return response.json();
