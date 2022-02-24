@@ -11,4 +11,3 @@ const searchBox = document.querySelector('input#search-box');
 // fetchRandomQuote()
 
 
-
