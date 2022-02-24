@@ -38,7 +38,7 @@ export default async function fetchMoreInfo(data) {
     </ul>
 </li>`
     );
-;   //console.log(item);
+   //console.log(item);
     weatherInfoList.innerHTML = item.join("");
     return item;
 }
