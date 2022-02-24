@@ -90,4 +90,4 @@ var e=module.exports=require("./moment-timezone");e.tz.load(require("./data/pack
 },{"axios":"dZBD","./randomImg":"Pp48","./randomQuote":"zXgl","./timenow":"XdP8","./more-info.js":"MsiH","./today":"apbh"}],"Focm":[function(require,module,exports) {
 "use strict";var e=r(require("axios"));function r(e){return e&&e.__esModule?e:{default:e}}require("./sass/main.scss"),require("./js/apiService");const s=document.querySelector("form#search"),u=document.querySelector("input#search-box");
 },{"axios":"dZBD","./sass/main.scss":"clu1","./js/apiService":"eQwa"}]},{},["Focm"], null)
-//# sourceMappingURL=/Weather-GOIT/src.5e1b3cd3.js.map
+//# sourceMappingURL=/Weather-GOIT/src.3229ac4e.js.map
