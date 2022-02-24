@@ -32,34 +32,37 @@ function onClickAddFavor(e) {
 
   if (cityName.length > 0 && !formData.includes(cityName) && cityName !== Number) {
     formData.push(cityName);
-    console.log(formData);
-    localStorage.setItem(CURRENT_CITY_NAME, formData);
+    // console.log(formData);
+    localStorage.setItem(CURRENT_CITY_NAME, JSON.stringify(formData));
   }
 
   onCityLocalFetch(CURRENT_CITY_NAME);
+  // console.log(localStorage.getItem(JSON.parse(CURRENT_CITY_NAME)));
   return form.reset();
 }
 
 // Executive code
 function onCityLocalFetch(name) {
   setTimeout(() => {
-    const getCityName = localStorage.getItem(name);
+    const getInfo = localStorage.getItem(CURRENT_CITY_NAME);
+    // console.log(getInfo);
+    let arrayCities = JSON.parse(getInfo);
+    console.log(arrayCities);
 
-    const jsonPrs = JSON.parse(getCityName);
-    console.log(jsonPrs);
+    arrayCities.map(city => {
+      return fetch(
+        `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=ru,en&appid=daa3c03c1253f276d26e4e127c34d058`,
+      ).then(response => {
+        if (!response.ok) {
+          Notify.failure(`Sorry! This city doesn't exist. Enter valid city name`);
+          throw new Error(response.status);
+        }
 
-    return fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=${getCityName}&units=metric&lang=ru,en&appid=daa3c03c1253f276d26e4e127c34d058`,
-    ).then(response => {
-      if (!response.ok) {
-        Notify.failure(`Sorry! This city doesn't exist. Enter valid city name`);
-        throw new Error(response.status);
-      }
+        console.log('GET CITY NAME FROM LOCAL STORAGE:', city);
+        console.log(response);
 
-      console.log('GET CITY NAME FROM LOCAL STORAGE:', getCityName);
-      console.log(response);
-
-      return response.json();
+        return response.json();
+      });
     });
   }, 800);
 }
