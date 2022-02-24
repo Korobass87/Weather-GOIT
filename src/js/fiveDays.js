@@ -38,7 +38,7 @@ const btn5days = document.querySelector('.fiveDays__test')
 btn5days.addEventListener('click', openFiveDays)
 
 
-function openFiveDays() {
+export default function openFiveDays() {
     creatingFiveDays()
     changeNameForFiveDays()
     showFiveDays()

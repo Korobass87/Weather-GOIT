@@ -1,18 +1,4 @@
-
-// для теста
-// import axios from 'axios';
-// const query = 'Moscow';
-
-// async function fetchWeatherToday(query) {
-//   const response = await axios.get(
-//     `https://api.openweathermap.org/data/2.5/forecast?q=${query}&units=metric&lang=en&appid=daa3c03c1253f276d26e4e127c34d058`,
-//   );
-//   const weather = await response.data;
-//   renderCurrentWeather(weather);
-// }
-
-// функция рендера текущей погоды
-
+import openFiveDays from "./fiveDays";
 
 export default function renderCurrentWeather(weather) {
   console.log("рендер погоды сейчас");
@@ -58,12 +44,14 @@ export default function renderCurrentWeather(weather) {
 const fivedayBtn = document.querySelector ('.fiveday__btn')
 const todayBtn = document.querySelector ('.today__btn')
 
-fivedayBtn.addEventListener ('click', removeCurrentClass);
+fivedayBtn.addEventListener('click', removeCurrentClass);
+// fivedayBtn.addEventListener('click', openFiveDays);
 todayBtn.addEventListener ('click', addCurrentClass);
 
 function removeCurrentClass() {
     fivedayBtn.classList.remove('current');
-    todayBtn.classList.add('current');
+  todayBtn.classList.add('current');
+  openFiveDays()
 
 }
 

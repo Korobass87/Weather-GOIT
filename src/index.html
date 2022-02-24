@@ -18,21 +18,21 @@
     />
   </head>
   <body>
-
-   
-    
-
     <include src="./partials/inputCity.html"></include>
 
     <include src="./partials/today.html"></include>
-    <include src="./partials/fiveDays.html"></include>
-    <include src="./partials/more-info.html"></include>
+
+    <div class="fiveDays--container is-hidden">
+      <h2 class="fiveDays__citiesName"></h2>
+      <ul class="fiveDays__list"></ul>
+
+      <include src="./partials/more-info.html"></include>
+    </div>
+
     <include src="./partials/date.html"></include>
     <include src="./partials/chart.html"></include>
     <include src="./partials/quote.html"></include>
 
-
     <script src="./index.js"></script>
-    <script src="./fiveDays.js"></script>
   </body>
 </html>
