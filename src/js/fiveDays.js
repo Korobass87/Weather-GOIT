@@ -89,7 +89,7 @@ async function createMarkupFiveDays(weathers) {
         <span class="fiveDays__weekDay">${dateForFiveDays[0]}</span>
     
         <span class="fiveDays__date">${dateForFiveDays[1]} ${dateForFiveDays[2]}</span>
-        <div class="fiveDays__div"><img class="fiveDays__img" src="http://openweathermap.org/img/wn/${iconFiveDays}@2x.png" 
+        <div class="fiveDays__div"><img class="fiveDays__img" src="https://openweathermap.org/img/wn/${iconFiveDays}@2x.png" 
    width="50px" height="50px" alt="${altFiveDays}"></div>
         <div class="fiveDays__range--common">
             <div class="fiveDays__range fiveDays__range--border">
