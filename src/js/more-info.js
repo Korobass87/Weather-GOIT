@@ -10,15 +10,15 @@ const moreButton = document.querySelector('.more-info__button');
 const weatherInfo = document.querySelector('.more-info');
 const weatherInfoList = document.querySelector('.more-info__list');
 
-moreButton.addEventListener("click", fetchInfoWeather);
+// moreButton.addEventListener("click", fetchInfoWeather);
 
 let dateForMore = 26
 
-export default async function fetchMoreInfo(data) {
+export default async function fetchMoreInfo(data, idBtn) {
     
     
-    const arrForRender = data.list.filter(item => (new Date(item.dt * 1000)).getDate() === dateForMore);
-    console.log(arrForRender);
+    const arrForRender = data.list.filter(item => (new Date(item.dt * 1000)).getDate() == idBtn);
+    
     const item = arrForRender.map(elem =>  
        ` <li class="time-weather">
         <p class="time-weather__time">${getCurrentTime(elem.dt)}</p>
@@ -39,7 +39,7 @@ export default async function fetchMoreInfo(data) {
     </ul>
 </li>`
     );
-   //console.log(item);
+   
     weatherInfoList.innerHTML = item.join("");
     return item;
 }

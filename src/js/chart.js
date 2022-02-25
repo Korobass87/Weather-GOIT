@@ -26,7 +26,8 @@ function onHideBox (e){
 //   try {
 //       const APIKey = 'daa3c03c1253f276d26e4e127c34d058';
 //       const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=30.489772&lon=-99.771335&exclude=hourly,minutely&units=metric&appid=${APIKey}`)
-//       const weatherList = await response.json()
+//     const weatherList = await response.json()
+//     console.log(weatherList);
 //       return weatherList.daily
 //   }
 //   catch (error) {
@@ -34,14 +35,24 @@ function onHideBox (e){
 //       }
 // }
 
-
-//вызываю функцию запроса
-fetchWeather().then((response)=>{
- const sliceDaily = response.slice(0,5)
- const dataToChart = processedData(sliceDaily)
+export default function runChart(data) {
+  // fetchWeather().then((response)=>{
+ const sliceDaily = data.slice(0,5)
+  const dataToChart = processedData(sliceDaily)
+  console.log(dataToChart);
  chartRender(dataToChart, ctx)
  
-})
+// })
+}
+
+//вызываю функцию запроса
+// fetchWeather().then((response)=>{
+//  const sliceDaily = response.slice(0,5)
+//   const dataToChart = processedData(sliceDaily)
+  
+//  chartRender(dataToChart, ctx)
+ 
+// })
 
 
 //обработчик данных для графика
@@ -60,7 +71,7 @@ const processedData = (obj)=>{
 
 //Функция принимает массив объектов(уже готовых данных) и ссылку на график 
 function chartRender(labels, link,){
-  console.log(labels)
+  
    const configCahrt = {
       type: 'line',
       data: {
@@ -174,7 +185,8 @@ function chartRender(labels, link,){
     maintainAspectRatio: false,
     devicePixelRatio: 2,
     }
-   }
+  }
+  console.log(link);
    const myChart = new Chart(link, configCahrt);
 }
 

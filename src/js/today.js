@@ -1,4 +1,11 @@
 import openFiveDays from "./fiveDays";
+import showFiveDays from './fiveDays'
+const fiveDayContainer = document.querySelector('.fiveDays--container')
+const todaySection = document.querySelector(".today__section")
+const chartShow = document.querySelector('.chart--show')
+const quoteSection = document.querySelector('.quote-section')
+let dateContainer = document.querySelector(".date-container")
+const containerChart = document.querySelector('.container-chart')
 
 export default function renderCurrentWeather(weather) {
   console.log("рендер погоды сейчас");
@@ -51,12 +58,23 @@ todayBtn.addEventListener ('click', addCurrentClass);
 function removeCurrentClass() {
     fivedayBtn.classList.remove('current');
   todayBtn.classList.add('current');
-  openFiveDays()
+  fiveDayContainer.classList.remove("is-hidden")
+  todaySection.classList.add("is-hidden")
+  dateContainer.classList.add("is-hidden")
+  chartShow.classList.remove("is-hidden")
+  quoteSection.classList.add("is-hidden")
+  containerChart.classList.remove("is-hidden")
+  // showFiveDays()
 
 }
 
 function addCurrentClass() {
     todayBtn.classList.remove('current');
-    fivedayBtn.classList.add('current');
-
+  fivedayBtn.classList.add('current');
+  fiveDayContainer.classList.add("is-hidden")
+  todaySection.classList.remove("is-hidden")
+dateContainer.classList.remove("is-hidden")
+  chartShow.classList.add("is-hidden")
+  quoteSection.classList.remove("is-hidden")
+  containerChart.classList.add("is-hidden")
 }

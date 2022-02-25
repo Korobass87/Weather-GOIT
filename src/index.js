@@ -8,5 +8,6 @@ import './js/randomImg';
 import './js/randomQuote';
 import './js/today'
 import './js/timenow'
+import './js/chart'
 
 

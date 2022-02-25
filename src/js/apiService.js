@@ -4,6 +4,7 @@ import fetchRandomQuote from './randomQuote';
 import renderOneDayWeather from './timenow';
 import fetchMoreInfo from './more-info.js';
 import renderCurrentWeather from "./today"
+import test from './fiveDays'
   
 
 
@@ -52,6 +53,7 @@ async function fetchWeatherByCoords(lat, lon) {
   fetchMoreInfo(weather);
   fetchImages(weather);
   fetchRandomQuote()
+  test(weather)
   
 }
 
@@ -67,6 +69,6 @@ async function fetchWeather(query) {
   fetchMoreInfo(weather);
   fetchImages(weather);
   fetchRandomQuote()
-  
+  test(weather)
   
 }

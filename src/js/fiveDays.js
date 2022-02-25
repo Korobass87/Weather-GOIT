@@ -1,47 +1,50 @@
-
+import fetchMoreInfo from "./more-info"
+import runChart from "./chart"
 const fiveDayList = document.querySelector('.fiveDays__list')
 const fiveDayCitiesName = document.querySelector('.fiveDays__citiesName')
 const fiveDayContainer = document.querySelector('.fiveDays--container')
+const weatherInfo = document.querySelector('.more-info');
 let latForFiveDays = ''
 let lonForFiveDays = ''
 let nameForFiveDays = ''
 let countryForFiveDays = ''
-
+let listForMore = {}
 // мой тестовый запрос по городу /////////////////////
 
-async function test() {
-          const APIKey = 'daa3c03c1253f276d26e4e127c34d058'
-        const response = await fetch (`https://api.openweathermap.org/data/2.5/forecast?q=london&appid=${APIKey}`)
-    const testList = await response.json()
+export default async function test(testList) {
+    //       const APIKey = 'daa3c03c1253f276d26e4e127c34d058'
+    //     const response = await fetch (`https://api.openweathermap.org/data/2.5/forecast?q=london&appid=${APIKey}`)
+    // const testList = await response.json()
 
 // добавить в общий запрос:
     /////////////
-    const infoAboutCity = testList.city
+    let infoAboutCity = testList.city
+    
    latForFiveDays = infoAboutCity.coord.lat
    lonForFiveDays = infoAboutCity.coord.lon
    nameForFiveDays = infoAboutCity.name
     countryForFiveDays = infoAboutCity.country
-    
+    openFiveDays()
    ///////// // 
-    return testList
-   
+    // return testList
+   listForMore = testList
 }
 
-test()
+// test()
 
 // имитация кнопки 5days////////////////////////////////
-fiveDayContainer.insertAdjacentHTML('beforebegin', '<button type="button" class="fiveDays__test">more info</button>')
-const btn5days = document.querySelector('.fiveDays__test')
+// fiveDayContainer.insertAdjacentHTML('beforebegin', '<button type="button" class="fiveDays__test">more info</button>')
+// const btn5days = document.querySelector('.fiveDays__test')
 
 
 // вешаю слушатель на мою сымитированную кнопку - типа 5days////////////////
-btn5days.addEventListener('click', openFiveDays)
+// btn5days.addEventListener('click', openFiveDays)
 
 
-export default function openFiveDays() {
+function openFiveDays() {
     creatingFiveDays()
     changeNameForFiveDays()
-    showFiveDays()
+    // showFiveDays()
 }
 
 // запрос на сервер
@@ -50,7 +53,9 @@ async function fetchWeatherForFiveDays() {
         const APIKey = 'daa3c03c1253f276d26e4e127c34d058'
         const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latForFiveDays}&lon=${lonForFiveDays}&exclude=hourly,minutely&units=metric&appid=${APIKey}`)
         const weatherList = await response.json()
-
+        
+        console.log(weatherList.daily);
+        // runChart(weatherList)
         return weatherList.daily
     }
     catch (error) {
@@ -63,13 +68,17 @@ async function fetchWeatherForFiveDays() {
 async function creatingFiveDays() {
     await fetchWeatherForFiveDays()
         .then(daily => {
-        createMarkupFiveDays(daily)  
+            createMarkupFiveDays(daily)  
+            runChart(daily)
     })
    
 }
 
+
+
 // разметка
 async function createMarkupFiveDays(weathers) {
+    
     fiveDayList.innerHTML = '';
     let MarkupFiveDays = await weathers.slice(1,6).map(weather => {
         const dateForFiveDays = createDateForFiveDays(weather)
@@ -126,7 +135,7 @@ function changeNameForFiveDays() {
 }
 
 // отображение контейнера 5 дней
-function showFiveDays() {
+export function showFiveDays() {
     fiveDayContainer.classList.remove('is-hidden')
     clearColorWeekDay()
 }
@@ -147,6 +156,9 @@ function changeColorWeekDay(evt) {
         return;
     }
     clearColorWeekDay()
+    fetchMoreInfo(listForMore, evt.target.id)
+    weatherInfo.classList.remove('is-hidden')
+    // console.dir(evt.target.id)
    
     const chosenWeekDay = evt.target.parentNode.firstElementChild
     chosenWeekDay.classList.add('fiveDays--selected')
