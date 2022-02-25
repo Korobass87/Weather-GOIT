@@ -39,7 +39,7 @@ export default function runChart(data) {
   // fetchWeather().then((response)=>{
  const sliceDaily = data.slice(0,5)
   const dataToChart = processedData(sliceDaily)
-  console.log(dataToChart);
+  
  chartRender(dataToChart, ctx)
  
 // })
@@ -186,7 +186,7 @@ function chartRender(labels, link,){
     devicePixelRatio: 2,
     }
   }
-  console.log(link);
+  
    const myChart = new Chart(link, configCahrt);
 }
 

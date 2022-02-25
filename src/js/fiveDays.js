@@ -54,7 +54,7 @@ async function fetchWeatherForFiveDays() {
         const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latForFiveDays}&lon=${lonForFiveDays}&exclude=hourly,minutely&units=metric&appid=${APIKey}`)
         const weatherList = await response.json()
         
-        console.log(weatherList.daily);
+        
         // runChart(weatherList)
         return weatherList.daily
     }
