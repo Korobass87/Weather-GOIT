@@ -6,21 +6,19 @@ li {
 }
 
 .more-info {
-  background: rgba(16, 33, 54, 0.8);
   font-family: $main-font;
   margin-left: auto;
   margin-right: auto;
   @media screen and (min-width: 320px) {
     width: 280px;
-    padding: 0px 4px 20px 6px;
+    padding: 0px 0 20px 0;
   }
   @media screen and (min-width: 768px) {
     padding: 0px 20px 32px 20px;
     width: 704px;
   }
   @media screen and (min-width: 1280px) {
-    width: 1256px;
-    padding: 0 20px 45px 20px;
+    width: 1210px;
   }
 
   &_scroll {
@@ -63,7 +61,7 @@ li {
 }
 .time-weather {
   margin: 0;
-  padding: 20px 16px;
+  padding: 10px 16px;
   list-style: none;
   min-width: 120px;
   height: 220px;
@@ -121,6 +119,7 @@ li {
     margin-bottom: 8px;
   }
   &__temp {
+    margin-bottom: 8px;
     font-size: 18px;
     color: $focus-color;
     line-height: 1.222;
@@ -128,6 +127,8 @@ li {
     &-icon {
       display: block;
       margin: 0 auto;
+      width: 35px;
+      height: 35px;
     }
   }
 
