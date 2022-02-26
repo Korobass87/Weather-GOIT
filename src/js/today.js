@@ -21,7 +21,7 @@ export default function renderCurrentWeather(weather) {
     aboveZero = '';
   }
   todayWrapper.innerHTML = `
-      <img class="today__img" src= "http://openweathermap.org/img/wn/${
+      <img class="today__img" src= "https://openweathermap.org/img/wn/${
         weather.list[0].weather[0].icon
       }.png">
       <p class="today__city__name">${weather.city.name}, ${weather.city.country}</p>

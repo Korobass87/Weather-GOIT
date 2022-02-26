@@ -48,7 +48,7 @@ async function fetchWeatherByCoords(lat, lon) {
   );
   const weather = await response.data;
   renderCurrentWeather(weather)
-  fetchImages(weather);
+  
   renderOneDayWeather(weather);
   fetchMoreInfo(weather);
   fetchImages(weather);
@@ -67,7 +67,6 @@ async function fetchWeather(query) {
   fetchImages(weather);
   renderOneDayWeather(weather);
   fetchMoreInfo(weather);
-  fetchImages(weather);
   fetchRandomQuote()
   test(weather)
   
