@@ -68,3 +68,6 @@ const getCurrentTime = data => {
     return time;
 };
 
+ function closeMoreInfo() {
+    weatherInfo.classList.add('is-hidden')
+}
