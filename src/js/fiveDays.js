@@ -168,6 +168,7 @@ function changeColorWeekDay(evt) {
     }
     if (evt.target.parentNode === isChosenWeekDay.parentNode) {             
         chosenWeekDay.classList.remove('fiveDays--selected')
+        
         // сюда нужно добавить функцию скрытия почасосого окна
     }
 }
