@@ -1,28 +1,29 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://api.openweathermap.org/data/2.5';
-const API_KEY = 'daa3c03c1253f276d26e4e127c34d058';
 
-const query = 'London';
+// const BASE_URL = 'https://api.openweathermap.org/data/2.5';
+// const API_KEY = 'daa3c03c1253f276d26e4e127c34d058';
+
+// const query = 'London';
 
 const moreButton = document.querySelector('.more-info__button');
 const weatherInfo = document.querySelector('.more-info');
 const weatherInfoList = document.querySelector('.more-info__list');
 
-moreButton.addEventListener("click", fetchInfoWeather);
+// moreButton.addEventListener("click", fetchInfoWeather);
 
 let dateForMore = 26
 
-export default async function fetchMoreInfo(data) {
+export default async function fetchMoreInfo(data, idBtn) {
     
     
-    const arrForRender = data.list.filter(item => (new Date(item.dt * 1000)).getDate() === dateForMore);
-    console.log(arrForRender);
+    const arrForRender = data.list.filter(item => (new Date(item.dt * 1000)).getDate() == idBtn);
+    
     const item = arrForRender.map(elem =>  
        ` <li class="time-weather">
         <p class="time-weather__time">${getCurrentTime(elem.dt)}</p>
         <p class="time-weather__temp">
-            <img src="${'https://openweathermap.org/img/wn/' + elem.weather[0].icon + '.png'}" alt="${elem.weather[0].description}" class="time-weather__temp-icon">
+            <img src="${'https://openweathermap.org/img/wn/' + elem.weather[0].icon + '.png'}" width="50px" height="50px" alt="${elem.weather[0].description}" class="time-weather__temp-icon">
             <span class="time-weather__span">${Math.round(elem.main.temp)} °</span>
         </p>    
     <ul class="time-weather__data">
@@ -38,12 +39,12 @@ export default async function fetchMoreInfo(data) {
     </ul>
 </li>`
     );
-;   //console.log(item);
+   
     weatherInfoList.innerHTML = item.join("");
     return item;
 }
  
-function fetchInfoWeather(event) {
+function fetchInfoWeather (event) {
     event.preventDefault();
     if (weatherInfo.classList.contains('is-hidden')) {
         weatherInfo.classList.remove('is-hidden');
@@ -66,3 +67,6 @@ const getCurrentTime = data => {
     return time;
 };
 
+ function closeMoreInfo() {
+    weatherInfo.classList.add('is-hidden')
+}
