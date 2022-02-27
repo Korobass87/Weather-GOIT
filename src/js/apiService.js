@@ -39,6 +39,8 @@ async function getLocationByIP() {
   const response = await axios.get(`https://ipapi.co/json/`);
   const locationByIP = await response.data;
   const query = locationByIP.city;
+  inputRef.value =query;
+  
   fetchWeather(query);
 }
 
