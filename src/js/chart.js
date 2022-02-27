@@ -1,5 +1,5 @@
 import Chart from 'chart.js/auto'; //ссылка на chart.js
-
+let myChart=0
 const jsHiden = document.querySelector('.js-hiden');
 const chartBtnHide = document.querySelector('.chart--btn__show'); //лишка с текстом show Chart
 const hideChart = document.querySelector('.hidden_title'); //лишка с текстом hide Chart
@@ -14,12 +14,14 @@ hidenBtn.addEventListener('click', onHideBox)
 //Функция показывает блок графика
 function onShowBox (e){
    jsHiden.classList.add('hidden') &
-   chartView.classList.remove('hidden')
+    chartView.classList.remove('hidden')
+  
 }
 //Функция убирает блок графика
 function onHideBox (e){
     chartView.classList.add('hidden') &
     jsHiden.classList.remove('hidden') 
+  
  }
 //Фетч Ольги
 // async function fetchWeather() {
@@ -37,6 +39,10 @@ function onHideBox (e){
 
 export default function runChart(data) {
   // fetchWeather().then((response)=>{
+  onHideBox()
+  if (myChart) {
+    myChart.destroy()
+  }
  const sliceDaily = data.slice(0,5)
   const dataToChart = processedData(sliceDaily)
   
@@ -187,7 +193,8 @@ function chartRender(labels, link,){
     }
   }
   
-   const myChart = new Chart(link, configCahrt);
+  myChart = new Chart(link, configCahrt);
+  // console.dir(myChart);
 }
 
 //это супер костыль (не трогать)

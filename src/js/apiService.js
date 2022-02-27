@@ -58,6 +58,7 @@ async function fetchWeatherByCoords(lat, lon) {
   fetchRandomQuote()
   test(weather)
   
+  
 }
 
 async function fetchWeather(query) {
@@ -72,5 +73,6 @@ async function fetchWeather(query) {
   fetchMoreInfo(weather);
   fetchRandomQuote()
   test(weather)
+  
  
 }

@@ -8,7 +8,7 @@ let dateContainer = document.querySelector(".date-container")
 const containerChart = document.querySelector('.container-chart')
 
 export default function renderCurrentWeather(weather) {
-  
+  addCurrentClass()
   const todayWrapper = document.querySelector('.today__wrapper');
   let aboveZero = '';
   if (
