@@ -100,4 +100,4 @@ var e=module.exports=require("./moment-timezone");e.tz.load(require("./data/pack
 },{"axios":"dZBD","./randomImg":"Pp48","./randomQuote":"zXgl","./timenow":"XdP8","./more-info.js":"MsiH","./today":"apbh","./fiveDays":"x3ny"}],"Focm":[function(require,module,exports) {
 "use strict";var e=r(require("axios"));function r(e){return e&&e.__esModule?e:{default:e}}require("./sass/main.scss"),require("./js/apiService"),require("./js/fiveDays"),require("./js/more-info"),require("./js/randomImg"),require("./js/randomQuote"),require("./js/today"),require("./js/timenow"),require("./js/chart");
 },{"axios":"dZBD","./sass/main.scss":"clu1","./js/apiService":"eQwa","./js/fiveDays":"x3ny","./js/more-info":"MsiH","./js/randomImg":"Pp48","./js/randomQuote":"zXgl","./js/today":"apbh","./js/timenow":"XdP8","./js/chart":"TEwb"}]},{},["Focm"], null)
-//# sourceMappingURL=/Weather-GOIT/src.1d5a66e7.js.map
+//# sourceMappingURL=/Weather-GOIT/src.19eaccde.js.map
