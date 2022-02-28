@@ -8,7 +8,8 @@
 
 .geo-btn {
   background-color: transparent;
-  top: 30%;
+  top: 50%;
+  transform: translateY(-50%);
   left: 7%;
   position: absolute;
   right: 22px;
@@ -80,7 +81,6 @@
     }
   }
   .geo-btn {
-    top: 30%;
     left: 4%;
   }
 }
@@ -89,7 +89,6 @@
     width: 822px;
   }
   .geo-btn {
-    top: 30%;
     left: 3%;
   }
 }
