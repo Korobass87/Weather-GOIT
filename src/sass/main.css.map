@@ -7,7 +7,7 @@
         "_chart.scss",
         "_variables.scss",
         "_search.scss",
-        "_background.scss",
+        "_global.scss",
         "_quote.scss",
         "_today.scss",
         "_date.scss",
