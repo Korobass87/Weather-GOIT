@@ -2,6 +2,8 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  margin-top: 30px;
 }
 
 input {
@@ -13,9 +15,17 @@ input {
   padding-right: 15px;
 }
 
-button {
+.add-favor-btn {
   width: 150px;
   height: 48px;
   border-radius: 24px;
   border-width: 1px;
+}
+
+.favorits {
+  margin-top: 15px;
+}
+
+.btn-fvr {
+  margin-right: 10px;
 }
