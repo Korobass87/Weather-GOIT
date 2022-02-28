@@ -676,7 +676,7 @@ footer {
       flex-shrink: 0;
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1280px) {
   footer {
     margin-top: auto;
     -webkit-box-orient: horizontal;
@@ -706,7 +706,7 @@ main {
   }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1280px) {
   .quote-section {
     width: 50%;
     margin-right: 110px;

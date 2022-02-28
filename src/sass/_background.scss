@@ -10,7 +10,7 @@ footer {
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1280px) {
     margin-top: auto;
     flex-direction: row;
   }
