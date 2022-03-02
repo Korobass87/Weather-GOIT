@@ -10,8 +10,10 @@ const input = document.querySelector('.input-value');
 const button = document.querySelector('.add-favor-btn');
 const renderFavor = document.querySelector('.favorits');
 
+// const favorItem = document.querySelector('.favor-item');
+
 // On loading page
-onCityLocalFetch(CURRENT_CITY_NAME);
+// onCityLocalFetch(CURRENT_CITY_NAME);
 
 button.addEventListener('click', onClickAddFavor);
 
@@ -61,7 +63,23 @@ function onCityLocalFetch(name) {
       console.log('GET API FROM LOCAL STORAGE:', city);
       console.log(response);
 
+      // Рендер разметки
       renderFavoritsMarkup(city);
+
+      // Кнопка удаления города из избранного
+      const btnClose = document.querySelector('.btn-close');
+      btnClose.addEventListener('click', onBtnClose);
+
+      function onBtnClose(e) {
+        e.preventDefault();
+        renderFavor.innerHTML = '';
+
+        const cityIndex = formData.indexOf(city);
+        formData.splice(cityIndex, 1);
+        console.log(arrayCities);
+
+        return renderFavoritsMarkup(city);
+      }
 
       return response.json();
     });
@@ -69,6 +87,9 @@ function onCityLocalFetch(name) {
 }
 
 function renderFavoritsMarkup(city) {
-  let markup = `<button class="btn-fvr">${city}</button>`;
+  let markup = `<li class="favor-item">
+                  <a class="favor-item__btn" href=""><span class="span-text">${city}</span></a>
+                  <button class="btn-close" id="${city}"></button>
+                </li>`;
   renderFavor.insertAdjacentHTML('beforeend', markup);
 }
