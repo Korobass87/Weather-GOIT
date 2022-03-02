@@ -1,10 +1,13 @@
-import './sass/main.scss';
-// import './js/apiService';
-// import './js/more-info.js';
 
-import './js/favorits';
-// import axios from 'axios';
-// const search = document.querySelector('form#search');
-// const searchBox = document.querySelector('input#search-box');
-// // import './js/randomImg'
-// // fetchRandomQuote()
+import axios from 'axios';
+import './sass/main.scss';
+import './js/favorits'
+import './js/apiService';
+import './js/fiveDays';
+import './js/more-info';
+import './js/randomImg';
+import './js/randomQuote';
+import './js/today';
+import './js/timenow';
+import './js/chart';
+

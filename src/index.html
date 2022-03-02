@@ -18,15 +18,27 @@
     />
   </head>
   <body>
-    <!-- Так добавляются фрагменты в главные HTML-файлы страниц. -->
+    <header>
+      <include src="./partials/inputCity.html"></include>
+      <include src="./partials/favorits.html"></include>
+    </header>
+    <main>
+      <include src="./partials/today.html"></include>
 
-    <!-- <include src="./partials/inputCity.html"></include>
-    <include src="./partials/quote.html"></include>
-    <include src="./partials/more-info.html"></include>
-    <include src="./partials/date.html"></include> -->
 
-    <include src="./partials/favorits.html"></include>
-    <!-- Скрипт идёт последним в разметке. В нём уже подключен главный SASS-файл. -->
+      <section class="fiveDays--container is-hidden">
+        <h2 class="fiveDays__citiesName"></h2>
+        <ul class="fiveDays__list"></ul>
+
+        <include src="./partials/more-info.html"></include>
+      </section>
+      <include src="./partials/chart.html"></include>
+    </main>
+    <footer>
+      <include src="./partials/date.html"></include>
+      <include src="./partials/quote.html"></include>
+    </footer>
+
     <script src="./index.js"></script>
   </body>
 </html>

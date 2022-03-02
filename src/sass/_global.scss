@@ -1,0 +1,23 @@
+body {
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+footer {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  @media screen and (min-width: 1280px) {
+    margin-top: auto;
+    flex-direction: row;
+  }
+}
+main {
+  flex-grow: 0;
+  @media screen and (min-width: 768px) {
+    flex-grow: 1;
+  }
+}

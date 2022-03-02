@@ -1,18 +1,13 @@
-/*
- * Главный файл стилей.
- * Все паршалы подключаются сюда.
- */
-
-// Стили для файла с примером HTML-фрагмента
-@import './example';
-
+@import './fiveDays';
+@import './chart';
 @import './variables';
 @import './search';
-
-@import './background';
+@import './global';
 @import './quote';
-
+@import './today';
 @import './date';
 @import './more-info';
 
+
 @import './favorits';
+

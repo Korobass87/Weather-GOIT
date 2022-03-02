@@ -8,7 +8,8 @@
 
 .geo-btn {
   background-color: transparent;
-  top: 14%;
+  top: 50%;
+  transform: translateY(-50%);
   left: 7%;
   position: absolute;
   right: 22px;
@@ -66,7 +67,7 @@
   }
 }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) and (max-width: 1199px) {
   .search-container {
     width: 704px;
 
@@ -80,7 +81,6 @@
     }
   }
   .geo-btn {
-    top: 20%;
     left: 4%;
   }
 }
