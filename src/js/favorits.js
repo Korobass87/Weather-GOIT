@@ -1,19 +1,16 @@
-// import debounce from 'lodash.debounce';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import Siema from 'siema';
 
-const DEBOUNCE_DELAY = 800;
 const CURRENT_CITY_NAME = 'current-city-name';
 let formData = [];
 
 const form = document.querySelector('.find-form');
 const input = document.querySelector('.input-value');
 const button = document.querySelector('.add-favor-btn');
-const renderFavor = document.querySelector('.favorits');
-
-// const favorItem = document.querySelector('.favor-item');
+const renderFavor = document.querySelector('.siema');
 
 // On loading page
-// onCityLocalFetch(CURRENT_CITY_NAME);
+onCityLocalFetch(CURRENT_CITY_NAME);
 
 button.addEventListener('click', onClickAddFavor);
 
@@ -44,10 +41,8 @@ function onClickAddFavor(e) {
 // Executive code
 function onCityLocalFetch(name) {
   const getInfo = localStorage.getItem(name);
-  // console.log(getInfo);
   const arrayCities = JSON.parse(getInfo);
   console.log('arrayCities', arrayCities);
-
   renderFavor.innerHTML = '';
 
   for (const city of arrayCities) {
@@ -63,23 +58,7 @@ function onCityLocalFetch(name) {
       console.log('GET API FROM LOCAL STORAGE:', city);
       console.log(response);
 
-      // Рендер разметки
       renderFavoritsMarkup(city);
-
-      // Кнопка удаления города из избранного
-      const btnClose = document.querySelector('.btn-close');
-      btnClose.addEventListener('click', onBtnClose);
-
-      function onBtnClose(e) {
-        e.preventDefault();
-        renderFavor.innerHTML = '';
-
-        const cityIndex = formData.indexOf(city);
-        formData.splice(cityIndex, 1);
-        console.log(arrayCities);
-
-        return renderFavoritsMarkup(city);
-      }
 
       return response.json();
     });
@@ -87,9 +66,41 @@ function onCityLocalFetch(name) {
 }
 
 function renderFavoritsMarkup(city) {
-  let markup = `<li class="favor-item">
+  let markup = `<div class="favor-item">
                   <a class="favor-item__btn" href=""><span class="span-text">${city}</span></a>
                   <button class="btn-close" id="${city}"></button>
-                </li>`;
+                </div>`;
   renderFavor.insertAdjacentHTML('beforeend', markup);
+
+  const mySiema = new Siema({ perPage: 1, duration: 600 });
+  const prev = document.querySelector('.prev').addEventListener('click', () => mySiema.prev());
+  const next = document.querySelector('.next').addEventListener('click', () => mySiema.next());
+
+  addAllListener();
+}
+
+function addAllListener() {
+  const btnClose = document.querySelectorAll('.btn-close');
+  console.log(btnClose);
+  btnClose.forEach(oneBtn => {
+    oneBtn.addEventListener('click', onBtnClose);
+  });
+}
+
+function onBtnClose(e) {
+  e.preventDefault();
+
+  console.dir(e.target);
+  const eventClose = e.target.id;
+  renderFavor.innerHTML = '';
+
+  const cityIndex = formData.indexOf(eventClose);
+
+  formData.splice(cityIndex, 1);
+  console.log(formData);
+
+  localStorage.setItem(CURRENT_CITY_NAME, JSON.stringify(formData));
+  formData.forEach(city => {
+    return renderFavoritsMarkup(city);
+  });
 }

@@ -28,6 +28,7 @@
   "dependencies": {
     "axios": "^0.26.0",
     "moment-timezone": "^0.5.34",
-    "notiflix": "^3.2.4"
+    "notiflix": "^3.2.4",
+    "siema": "^1.5.1"
   }
 }
