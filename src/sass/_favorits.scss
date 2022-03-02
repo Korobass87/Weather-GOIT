@@ -1,0 +1,99 @@
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+input {
+  width: 280px;
+  height: 48px;
+  border-radius: 24px 24px;
+  border: 1px solid black;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.add-favor-btn {
+  width: 150px;
+  height: 48px;
+  border-radius: 24px;
+  border-width: 1px;
+}
+
+.siema {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  max-width: 480px;
+}
+
+.favor-item__btn {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-right: 10px;
+  border-radius: 14px 14px;
+  background: rgba(16, 33, 54, 0.5);
+  height: 28px;
+  border: none;
+  color: #ffffff;
+  font-size: 16px;
+
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+
+  margin: 0 10px;
+  padding-right: 30px;
+}
+
+.span-text {
+  margin-left: 12px;
+  text-decoration-line: underline;
+  line-height: 14px;
+}
+
+.favor-item {
+  position: relative;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.btn-close {
+  position: absolute;
+  background-color: transparent;
+  background-image: url(../img/icon-close.svg);
+  margin-left: 10px;
+  margin-right: 12px;
+  margin-top: 9;
+  margin-bottom: 9px;
+  width: 12px;
+  height: 12px;
+  border: none;
+  z-index: 999;
+  top: 60%;
+  right: 0%;
+  transform: translate(-50%, -50%);
+}
+
+// .prev {
+//   margin-top: 20px;
+//   background: rgba(255, 255, 255, 0.2);
+//   border-radius: 50%;
+//   height: 28px;
+//   width: 28px;
+// }
+
+.next {
+  margin-top: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  height: 28px;
+  width: 28px;
+  background-image: url(../img/icon-swipe-right.svg);
+
+  background-repeat: no-repeat;
+}
