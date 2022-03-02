@@ -1,21 +1,24 @@
 import axios from 'axios';
+
 import fetchImages from './randomImg';
 import fetchRandomQuote from './randomQuote';
 import renderOneDayWeather from './timenow';
 import fetchMoreInfo from './more-info.js';
 import renderCurrentWeather from "./today"
 import test from './fiveDays'
+import {onCityLocalFetch, onClickAddFavor, renderFavor} from './favorits'
 
   
-
+onCityLocalFetch('current-city-name')
 
 const formRef = document.querySelector('.search-city');
 const inputRef = document.querySelector('.search-form');
-const output = document.querySelector('.output');
+const button = document.querySelector('.search-city__form-btn')
 const geoBtn = document.querySelector('.geo-btn');
 
 formRef.addEventListener('submit', onSearch);
 geoBtn.addEventListener('click', getLocationByIP);
+button.addEventListener('click', onClickAddFavor)
 navigator.geolocation.getCurrentPosition(success, onError);
 
 function onSearch(event) {
