@@ -31,12 +31,11 @@
 
   margin: 0 10px;
   padding-right: 30px;
-}
-
-.span-text {
-  margin-left: 12px;
+  padding-left: 12px;
   text-decoration-line: underline;
   line-height: 14px;
+  display: flex;
+  align-items: center;
 }
 
 .favor-item {
