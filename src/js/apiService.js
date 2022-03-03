@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 import fetchImages from './randomImg';
 import fetchRandomQuote from './randomQuote';
@@ -68,6 +69,8 @@ async function fetchWeatherByCoords(lat, lon) {
   const response = await axios.get(
     `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&lang=en&appid=daa3c03c1253f276d26e4e127c34d058`,
   );
+
+
   const weather = await response.data;
   renderCurrentWeather(weather)
   
@@ -81,17 +84,33 @@ async function fetchWeatherByCoords(lat, lon) {
 }
 
 async function fetchWeather(query) {
- 
-  const response = await axios.get(
+  let response
+
+ try { response = await axios.get(
     `https://api.openweathermap.org/data/2.5/forecast?q=${query}&units=metric&lang=en&appid=daa3c03c1253f276d26e4e127c34d058`,
-  );
-  const weather = await response.data;
+ );
+   
+    const weather =  response.data;
   renderCurrentWeather(weather)
   fetchImages(weather);
   renderOneDayWeather(weather);
   fetchMoreInfo(weather);
   fetchRandomQuote()
   test(weather)
+  }
+  catch (error) {
+    Notify.failure(`Sorry! This city doesn't exist. Enter valid city name`)
+  }
+  // const response = await axios.get(
+  //   `https://api.openweathermap.org/data/2.5/forecast?q=${query}&units=metric&lang=en&appid=daa3c03c1253f276d26e4e127c34d058`,
+  // );
+  // console.log(response)
+  // if (!response.data) {
+  //   console.log("не нашел");
+  // }
+  
+  
+ 
   
  
 }
