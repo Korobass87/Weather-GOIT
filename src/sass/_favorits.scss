@@ -148,8 +148,15 @@
 }
 
 .close-btn {
-  stroke: rgba(255, 255, 255, 0.5);
+  // stroke: rgba(255, 255, 255, 0.5);
   margin-left: 10px;
+  background-image: url(../img/closebtn.svg);
+  width: 10px;
+  height: 10px;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .seach-favorite-item {

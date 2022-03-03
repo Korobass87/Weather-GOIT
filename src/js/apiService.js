@@ -262,15 +262,16 @@ async function renderFavList(render) {
     // seachFavList.innerHTML = ""
     
         
-        
+        // <svg class="close-btn" width="10" height="10">
+        //   <use href="/Weather-GOIT/symbol-defs.9b32fae7.svg#icon-close"></use>
+        // </svg>
 
         
         
         let renderFavItem = render.map(item=>`<li id="${item}" class="seach-favorite-item">
         <a class="seach-favorite-link" href="#">${item}</a>
-        <svg class="close-btn" width="10" height="10">
-          <use href="/Weather-GOIT/symbol-defs.9b32fae7.svg#icon-close"></use>
-        </svg>
+        <div class="close-btn"></div>
+        
       </li>`).join("")
         
     seachFavList.innerHTML = await renderFavItem
@@ -317,9 +318,9 @@ function renderFwdBackBtn() {
 
 
 function action(e) {
-    
+    console.log(e.target.nodeName)
     let favoritItems = JSON.parse(localStorage.getItem("favor"))
-    if (e.target.nodeName === "use" || e.target.nodeName === "img") {
+    if (e.target.nodeName === "DIV") {
         console.log(e.currentTarget.id)
         let idxOfDelElem = favoritItems.indexOf(`${e.currentTarget.id}`)
     
