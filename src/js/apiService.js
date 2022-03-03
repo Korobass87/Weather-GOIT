@@ -300,7 +300,7 @@ function renderFwdBackBtn() {
 function action(e) {
     
     let favoritItems = JSON.parse(localStorage.getItem("favor"))
-    if (e.target.nodeName === "use" || e.target.nodeName === "svg") {
+    if (e.target.nodeName === "use" || e.target.nodeName === "img") {
         console.log(e.currentTarget.id)
         let idxOfDelElem = favoritItems.indexOf(`${e.currentTarget.id}`)
     
@@ -308,7 +308,7 @@ function action(e) {
         localStorage.setItem("favor", JSON.stringify(favoritItems))
     
         countFav ()
-    } else {apiByName(e.currentTarget.id);}
+    } else {fetchWeather(e.currentTarget.id);}
 }
 
 async function countFav () {
