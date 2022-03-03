@@ -21,10 +21,12 @@ export default function renderCurrentWeather(weather) {
     aboveZero = '';
   }
   todayWrapper.innerHTML = `
+  <div class="today__div">
       <img class="today__img" src= "https://openweathermap.org/img/wn/${
         weather.list[0].weather[0].icon
       }.png">
-      <p class="today__city__name">${weather.city.name}, ${weather.city.country}</p>
+  </div>
+  <p class="today__city__name">${weather.city.name}, ${weather.city.country}</p>
       <div class="today__temp__info">
       <p class="today__temp">${aboveZero}${Math.ceil(weather.list[0].main.temp)}</p>
       <ul class="today__temp__list">
@@ -50,12 +52,15 @@ export default function renderCurrentWeather(weather) {
 
 const fivedayBtn = document.querySelector ('.fiveday__btn')
 const todayBtn = document.querySelector ('.today__btn')
+const btnList = document.querySelector ('.today__button__list')
 
 fivedayBtn.addEventListener('click', removeCurrentClass);
 // fivedayBtn.addEventListener('click', openFiveDays);
 todayBtn.addEventListener ('click', addCurrentClass);
 
+
 function removeCurrentClass() {
+
     fivedayBtn.classList.remove('current');
   todayBtn.classList.add('current');
   fiveDayContainer.classList.remove("is-hidden")
@@ -64,6 +69,8 @@ function removeCurrentClass() {
   chartShow.classList.remove("is-hidden")
   quoteSection.classList.add("is-hidden")
   containerChart.classList.remove("is-hidden")
+  btnList.classList.add("curent");
+
   // showFiveDays()
 
 }
@@ -77,4 +84,5 @@ dateContainer.classList.remove("is-hidden")
   chartShow.classList.add("is-hidden")
   quoteSection.classList.remove("is-hidden")
   containerChart.classList.add("is-hidden")
+  btnList.classList.remove("curent");
 }
