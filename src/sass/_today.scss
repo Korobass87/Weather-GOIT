@@ -7,8 +7,6 @@
   margin-top: 41px;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 32px;
-  padding-bottom: 32px;
   padding-left: 55px;
   padding-right: 62px;
 }
@@ -43,13 +41,31 @@
   justify-content: center;
   flex-direction: column;
   position: relative;
+  padding-top: 32px;
+  padding-bottom: 32px;
+ 
+
 }
 
 .today__img {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  // width: 50px;
+  // height: 50px;
+  
 }
+
+@media screen and (min-width: 1280px) {
+  .today__img {
+    width: 100px;
+    height: 100px;
+
+   
+  }
+}
+
+
 
 .today__city__name {
   font-family: 'Lato';
@@ -209,6 +225,7 @@
 @media screen and (min-width: 1280px) {
   .today__button__list {
     margin-top: 38.5px;
+    margin-bottom: 0;
   }
 }
 
@@ -311,4 +328,37 @@
 
 .current {
   background: rgba(255, 255, 255, 0.5);
+}
+
+.today__div {
+  width: 35px;
+  height: 35px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-bottom: 5px;
+}
+
+@media screen and (min-width: 1280px) {
+  .today__div {
+    width: 55px;
+    height: 35px;
+   
+  }
+}
+
+.curent {
+  margin-top: 60px;
+}
+
+@media screen and (min-width: 780px) {
+  .curent {
+    margin-top: 373px;
+  }
+}
+
+@media screen and (min-width: 780px) {
+  .curent {
+    margin-top: 278px;
+  }
 }
