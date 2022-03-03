@@ -250,7 +250,7 @@ async function renderFavList(render) {
         let renderFavItem = render.map(item=>`<li id="${item}" class="seach-favorite-item">
         <a class="seach-favorite-link" href="#">${item}</a>
         <svg class="close-btn" width="10" height="10">
-          <use href="/symbol-defs.9b32fae7.svg#icon-close"></use>
+          <use href="/Weather-GOIT/symbol-defs.9b32fae7.svg#icon-close"></use>
         </svg>
       </li>`).join("")
         
