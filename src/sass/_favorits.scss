@@ -28,19 +28,17 @@
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
-
-  margin: 0 10px;
   padding-right: 30px;
   padding-left: 12px;
   text-decoration-line: underline;
   line-height: 14px;
   display: flex;
+  white-space: nowrap;
   align-items: center;
 }
 
 .favor-item {
   position: relative;
-  margin-top: 20px;
   margin-bottom: 20px;
 }
 
